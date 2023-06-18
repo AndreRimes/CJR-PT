@@ -6,10 +6,10 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter';
             background: #111E3E;
         }
-        
+
         .navbar {
             width: 100%;
             height: 86px;
@@ -22,26 +22,27 @@
             top: 0;
             left: 0;
         }
-        
+
         .logo {
             background: #D9D9D9;
             width: 124px;
             height: 44px;
             border-radius: 16px;
-    
         }
-        #img-logo{
-            margin-top:4px;
-            margin-bottom:4px;
+
+        #img-logo {
+            margin-top: 4px;
+            margin-bottom: 4px;
             margin-left: 32px;
             margin-right: 32px;
+            cursor: pointer;
         }
-        
+
         .navbar-direito {
             display: flex;
             align-items: center;
         }
-        
+
         .button {
             margin-left: 10px;
             padding: 8px 16px;
@@ -58,17 +59,17 @@
             font-size: 16px;
             line-height: 19px;
         }
-        
+
         .link {
             margin-left: 18px;
-            color: #222E50;  
+            color: #222E50;
             font-style: normal;
             font-weight: 700;
             font-size: 16px;
             line-height: 19px;
             text-decoration: none;
         }
-        
+
         .div_prin {
             width: 547px;
             height: 723px;
@@ -77,10 +78,19 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border-radius:10px ;
+            border-radius: 10px;
         }
-        
-        .input {
+
+        .formulario {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .formulario input,
+        .formulario select {
             width: 401px;
             height: 59px;
             font-size: 16px;
@@ -92,22 +102,29 @@
             border-radius: 15px;
             background: #D9D9D9;
             margin-bottom: 15px;
+            color: #111E3E;
         }
-        .genero{
-            position: relative;
-            display: inline-block;
+
+        .formulario select {
+            background-image: url(img/botao-genero.png);
+            background-repeat: no-repeat;
+            background-position: calc(100% - 20px) center;
+            color: #757575;
+            appearance: none;
+
         }
-        .genero img{
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            height: 18px;
-            width: 18px;
-            cursor: pointer;
+
+        .formulario select option[value=""] {
+            color: #757575;
+            font-size: 16px;
+            color: #111E3E;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 19px;
         }
-        
+
         .link-conta {
-            margin-top:12px;
+            margin-top: 12px;
             color: #111E3E;
             font-family: 'Inter';
             font-style: normal;
@@ -116,12 +133,12 @@
             line-height: 19px;
             text-decoration-line: none;
         }
-        
+
         .button-login {
             width: 283px;
             height: 50px;
             margin-top: 17px;
-            margin-bottom: 20px ;
+            margin-bottom: 20px;
             padding: 15px 117px;
             background: #D9D9D9;
             border: none;
@@ -134,25 +151,42 @@
             line-height: 19px;
             text-align: center;
         }
-        .img_login{
+
+        .img_login {
             margin-top: 43.2px;
             margin-bottom: 37.2px;
+            cursor: pointer;
         }
-        .img_bg{
+
+        .img_bg {
             margin-top: 153px;
-            width:778px;
-            height:451px;
+            width: 778px;
+            height: 451px;
         }
-        .teste{
+
+        .teste {
             margin-top: 171px;
             display: flex;
         }
-        #acesse-conta{
-            text-decoration: underline;
 
+        #acesse-conta {
+            text-decoration: underline;
         }
-        
-    </style>    
+
+        #input_imgem {
+            display: none;
+        }
+
+        @media (max-width:800px) {
+            .img_bg {
+                display: none;
+            }
+
+            .div_prin {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="navbar">
@@ -163,26 +197,29 @@
         </div>
     </div>
 
-<div class="teste">
-    <img src="img/bg.png" class="img_bg">
+    <div class="teste">
+        <img src="img/bg.png" class="img_bg">
 
-
-    <div class="div_prin">
-        <img src="img/Vector.png" alt="" class="img_login">
-        <input id="text" type="text" class="input" placeholder="Nome">
-        <div class="genero">
-            <input class="input" type="text" placeholder="Genero">
-            <img src="img/botao-genero.png">
+        <div class="div_prin">
+            <label for="input_imgem">
+                <img src="img/login.png" alt="" class="img_login">
+            </label>
+            <input type="file" id="input_imgem">
+            <div class="formulario">
+                <input id="text" type="text" class="input" placeholder="Nome">
+                <select class="select" id="selGen">
+                    <option value="">Genero</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outros">Outros</option>
+                </select>
+                <input class="input" type="email" name="" id="" placeholder="Email">
+                <input class="input" type="text" placeholder="Cargo">
+                <input id="senha" type="password" class="input" placeholder="Senha">
+            </div>
+            <a href="#" class="link-conta">Possui conta? <span id="acesse-conta">Acesse aqui</span></a>
+            <button class="button-login">Cadastrar</button>
         </div>
-        <input class="input" type="email" name="" id="" placeholder="Email">
-        <input class="input" type="text" placeholder="Cargo">
-        <input id="senha" type="password" class="input" placeholder="Senha">
-
-        <a href="#" class="link-conta">Possui conta? <span id="acesse-conta">Acesse aqui</span></a>
-        <button class="button-login">Cadastrar</button>
     </div>
-</div>
-
-
 </body>
 </html>
