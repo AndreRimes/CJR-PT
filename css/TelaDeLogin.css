@@ -4,10 +4,6 @@
     box-sizing: Border-box;
   }
   
-@font-face {
-    font-family: FonteInter;
-    src: url(CJR\Inter-VariableFont_slnt,wght);
-}
 body {
     background-color: #111E3E;
 
