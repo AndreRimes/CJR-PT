@@ -84,8 +84,6 @@ body {
 
 form{
     display: grid;
-
-
 }
 .AtrasLogin{
     z-index: 1;
@@ -139,7 +137,12 @@ form{
     margin-top: -35px;
     margin-left: 15px;
 }
+.SimboloMostrarSenha{
+    z-index: 2;
+    margin-top: -32px;
+    padding-left: 175%;
 
+}
 .EsqueceuSenha {
     text-decoration:underline;
     padding-bottom: 50%;
