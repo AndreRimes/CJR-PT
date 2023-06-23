@@ -84,7 +84,7 @@ body {
     margin-top: 20px;
 }
 
-select {
+.input,select {
     width: 401px;
     height: 59px;
     font-size: 16px;
