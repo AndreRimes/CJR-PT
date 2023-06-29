@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PARABENS VC ESTA NO FEED LOGADO</h1>
+    <h2>Seu username: <%= usuariologado.username%></h2>
+    
+    <form action="/logout" method="post">
+    <button>SAIR</button>
+    </form>
+       
+        <% for (let post of posts){ %>
+            <li>
+                <a href="perfil/<%=post.user_id %>"><%= post.content%></a>-<span><%=post.User.username%></span>
+            </li>
+         <% } %>
+
+    <form action="/CriarPost" method="post">
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <button>Criar post</button>
+    </form>
+</body>
+</html>

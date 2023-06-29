@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tela de cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/TelaDeCadastro.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><span><img id="img-logo" src="../img/cjr.png"></span></div>
+        <div class="navbar-direito">
+            <a href="/cadastro" class="link">Criar Conta</a>
+            <form action="/login">
+                <button type="submit" class="button">Entrar</button>
+            </form>
+        </div>
+    </div>
+    <form action="/cadastro" method="POST" enctype="application/x-www-form-urlencoded">
+    <div class="teste">
+        <img src="../img/bg.png" class="img_bg">
+
+        <div class="div_prin">
+            <label for="input_imgem">
+                <img src="../img/login.png" alt="" class="img_login">
+            </label>
+            <input type="file" id="input_imgem" name="imagem">
+                    <input id="text" type="text" class="input" placeholder="Nome" name="username">
+                    <select class="select" id="selGen" name="genero">
+                        <option value=""> <span id="optgen">Gênero</span></option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                    <input class="input" type="email" id="" placeholder="Email" name="email">
+                    <input class="input" type="text" placeholder="Cargo" name="cargo">
+                    <div class="BoxSenha">
+                        <input id="senha" type="password" class="input" placeholder="Senha" name="senha">
+                        <span class="SimboloMostrarSenha"><img src="../img/SimboloMostrarSenha.png" class="MostrarSenha"></span>
+                    </div>
+                <a href="/login" class="link-conta">Possui conta? <span id="acesse-conta">Acesse aqui</span></a>
+                <button type="submit" class="button-login">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+
+
+<script>
+const inputSenha = document.querySelector("#senha");
+const MostrarSenha = document.querySelector(".MostrarSenha");
+
+MostrarSenha.addEventListener("click", ()=>{
+    if(inputSenha.type === "password"){
+        inputSenha.type = "text";
+    }else{
+        inputSenha.type = "password";
+    }
+})
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const erro = urlParams.get("erro");
+
+  if (erro) {
+    alert(erro);
+  }
+})
+
+</script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERFIL</title>
+</head>
+<body>
+    <h1><%= usuario.username %></h1>
+    <h2><%= usuario.genero %></h2>
+    <h2><%= usuario.email %></h2>
+    <h2><%= usuario.cargo %></h2>
+    <% if (usuario.posts && usuario.posts.length > 0) { %>
+        <ul>
+          <% usuario.posts.forEach((post) => { %>
+            <li><%= post.content %></li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>Não há posts para exibir.</p>
+      <% } %>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter';
+    background: #111E3E;
+}
+
+.navbar {
+    width: 100%;
+    height: 86px;
+    background: #8BC34A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo {
+    background: #D9D9D9;
+    width: 124px;
+    height: 44px;
+    border-radius: 16px;
+}
+
+#img-logo {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 32px;
+    margin-right: 32px;
+    cursor: pointer;
+}
+
+.navbar-direito {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background: #222E50;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    width: 92px;
+    height: 48px;
+    margin-right: 48px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.link {
+    margin-left: 18px;
+    color: #222E50;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: none;
+}
+
+.div_prin {
+    width: 547px;
+    height: 723px;
+    background-color: #222E50;;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.input,select {
+    width: 401px;
+    height: 59px;
+    font-size: 16px;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    border-radius: 15px;
+    background: #D9D9D9;
+    margin-bottom: 15px;
+}
+select {
+    background-image: url(../img/botao-genero.png);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 20px) center;
+    appearance: none;
+    
+}
+
+
+.input::placeholder{
+    color: #111E3E;
+}
+
+.formulario select option[value=""] {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 19px;
+}
+
+
+
+.link-conta {
+    margin-top: 12px;
+    color: #111E3E;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: none;
+}
+
+.button-login {
+    width: 283px;
+    height: 50px;
+    margin-top: 17px;
+    margin-bottom: 20px;
+    padding: 15px 117px;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #222E50;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    bottom: 36px;
+}
+
+.img_login {
+    margin-top: 43.2px;
+    margin-bottom: 37.2px;
+    cursor: pointer;
+}
+
+.img_bg {
+    margin-top: 153px;
+    width: 778px;
+    height: 451px;
+}
+
+.teste {
+    margin-top: 171px;
+    display: flex;
+}
+
+#acesse-conta {
+    text-decoration: underline;
+}
+
+#input_imgem {
+    display: none;
+}
+
+@media (max-width:800px) {
+    .img_bg {
+        display: none;
+    }
+
+    .div_prin {
+        width: 100%;
+    }
+}
+
+.BoxSenha{
+    position: relative;
+}   
+.SimboloMostrarSenha {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  .BoxSenha .input{
+    height: 53px;
+  }
