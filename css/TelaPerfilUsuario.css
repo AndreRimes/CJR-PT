@@ -1,0 +1,126 @@
+body {
+    background-color: #111E3E;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter';
+}
+
+.navbar {
+    width: 100%;
+    height: 86px;
+    background: #8BC34A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.logo {
+    background: #D9D9D9;
+    width: 124px;
+    height: 44px;
+    border-radius: 16px;
+}
+#img-logo {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 32px;
+    margin-right: 32px;
+    cursor: pointer;
+}
+.navbar-direito {
+    display: flex;
+    align-items: center;
+}
+.button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background: #222E50;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    width: 92px;
+    height: 48px;
+    margin-right: 48px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+}
+.link {
+    
+    margin-left: 18px;
+    color: #222E50;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: none;
+}
+.feed {
+    position: relative;
+    width: 551px;
+    height: 800px;
+    left: 580px;
+    top: 80px;
+    background-color: #111E3E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #7E7E7E;
+}
+
+.post-bg {
+    position: relative;
+    width: 551px;
+    height: 151px;
+    left:579px;
+    top:100px;
+    background-color: #222E50;
+}
+
+
+
+#fotin {
+    border-radius: 50%;
+    
+}
+
+
+
+.tweet {
+    border-radius: 15px;
+    margin-bottom: 15px;
+    background-color: #222E50;
+    
+  }
+.tweet .pequeno {
+    padding-left: 15px;
+    padding-top: 10px;
+    width: 8%;
+    
+}
+
+.tweet .nome {
+    display:inline;
+    font-weight: bold;
+    color: white;
+}
+.tweet .horario {
+    display:inline;
+    color: #888;
+    font-size: 12px;
+  }
+
+.tweet .conteudo {
+    font-size: 15px;
+    margin-right: 10px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    color: white;
+  }
