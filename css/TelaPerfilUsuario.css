@@ -3,9 +3,67 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter';
-}
+  }
+  
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    padding-right: 50%;
+    padding-top: 10%;
+    
+     /* Aproxima o perfil do feed */
+  }
+  
+  .photo {
+    
+    border-radius: 50%;
+    width: 60%;
+    height: 60%;
+    cursor: pointer;
+  }
+  
+  .name {
+    font-weight: bold;
+    font-size: 170%;
+    color: #FFFFFF;
+    
+  }
+  
+  .job,
+  .contact {
+    padding-left: 20%;
+    margin-top: -10%;
+    color: #ffffff;
+    font-size: 80%;
+  }
+  .organiza {
+    padding-bottom: 10%;
+    padding-top: -5%;
+  }
+  #cor-icone1 {
+    
+    padding-top: 10%;
+    padding-right: 10%;
+  }
+  #cor-icone2 {
+    padding-right: 15%;
+    
+  }
+  .job img,
+  .contact img {
+    display: inline;
+    width: 15%;
+    height: 15%;
+  }
+  
+  #foto1 {
+    width: 100%;
+    padding-top: 5%;
+  }
 
-.navbar {
+  .navbar {
     width: 100%;
     height: 86px;
     background: #8BC34A;
@@ -16,25 +74,30 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-}
-.logo {
+    z-index: 2;
+  }
+  
+  .logo {
     background: #D9D9D9;
     width: 124px;
     height: 44px;
     border-radius: 16px;
-}
-#img-logo {
+  }
+  
+  #img-logo {
     margin-top: 4px;
     margin-bottom: 4px;
     margin-left: 32px;
     margin-right: 32px;
     cursor: pointer;
-}
-.navbar-direito {
+  }
+  
+  .navbar-direito {
     display: flex;
     align-items: center;
-}
-.button {
+  }
+  
+  .button {
     margin-left: 10px;
     padding: 8px 16px;
     background: #222E50;
@@ -49,9 +112,9 @@ body {
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-}
-.link {
-    
+  }
+  
+  .link {
     margin-left: 18px;
     color: #222E50;
     font-style: normal;
@@ -59,68 +122,127 @@ body {
     font-size: 16px;
     line-height: 19px;
     text-decoration: none;
-}
-.feed {
+  }
+  
+  .feed {
     position: relative;
     width: 551px;
-    height: 800px;
-    left: 580px;
+    height: 100%;
+    left: 36%;
     top: 80px;
     background-color: #111E3E;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Alinha o feed ao topo */
     border: 1px solid #7E7E7E;
-}
-
-.post-bg {
-    position: relative;
+    padding-top: 20px; /* Adiciona espaçamento no topo do feed */
+    z-index: 1; /* Garante que o feed fique acima do post-bg */
+  }
+  
+  .post-bg {
+    position: absolute;
     width: 551px;
     height: 151px;
-    left:579px;
-    top:100px;
     background-color: #222E50;
-}
-
-
-
-#fotin {
-    border-radius: 50%;
-    
-}
-
-
-
-.tweet {
+    bottom: 88%;
+ /* Ajusta a posição horizontal */
+    z-index: -1; /* Coloca o post-bg atrás do feed */
+  }
+  
+  .tweet {
     border-radius: 15px;
     margin-bottom: 15px;
     background-color: #222E50;
+    position: relative;
+    padding: 0%;
     
   }
-.tweet .pequeno {
-    padding-left: 15px;
-    padding-top: 10px;
+  
+  .primeiro-tweet {
+    border-radius: 15px;
+    margin-bottom: 15px;
+    background-color: #222E50;
+    position: relative;
+    padding: 10px;
+    z-index: -2;
+  }
+  .primeiro-tweet:before {
+    content: "Publicações";
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    color: #888;
+    font-weight: bold;
+  }
+  
+  .tweet .pequeno {
+    display: inline;
     width: 8%;
-    
-}
-
-.tweet .nome {
-    display:inline;
+    border-radius: 50%;
+    margin-right: 2%;
+    margin-left: 3%;
+    margin-top: 3%;
+  }
+  
+  .tweet .nome {
+    display: inline;
     font-weight: bold;
     color: white;
-}
-.tweet .horario {
-    display:inline;
+    margin-right: 10px;
+  }
+  
+  .tweet .horario {
+    display: inline;
     color: #888;
     font-size: 12px;
   }
-
-.tweet .conteudo {
+  
+  .tweet .conteudo {
     font-size: 15px;
     margin-right: 10px;
     margin-left: 80px;
     margin-bottom: 20px;
     margin-top: 15px;
     color: white;
+    z-index: -1;
+  }
+
+  .primeiro-tweet .pequeno {
+    display: inline;
+    width: 8%;
+    border-radius: 50%;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-top: 3%;
+  }
+  
+  .primeiro-tweet .nome {
+    display: inline;
+    font-weight: bold;
+    color: white;
+    margin-right: 10px;
+    
+  }
+  
+  .primeiro-tweet .horario {
+    display: inline;
+    color: #888;
+    font-size: 12px;
+  }
+  
+  .primeiro-tweet .conteudo {
+    font-size: 15px;
+    margin-right: 10px;
+    margin-left: 80px;
+    margin-bottom: 5%;
+    margin-top: 4%;
+    color: white;
+  }
+  
+  .line {
+    width: calc(100%); /* Ajusta a largura da linha */
+    height: 1px;
+    background-color: #888;
+    margin-bottom: 10%; /* Adiciona espaçamento à esquerda */
   }
