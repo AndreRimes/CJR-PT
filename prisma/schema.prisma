@@ -21,6 +21,7 @@ model user{
   senha String
   imagem String?
   posts post[]
+  coments coment[]
 }
 
 
@@ -30,4 +31,14 @@ model post{
   user_id Int
   content String
   updated_at DateTime @updatedAt
+  coments coment[]
+}
+
+model coment{
+  id Int @id @default(autoincrement())
+  post_id Int
+  Post post @relation(fields: [post_id],references: [id])
+  user_id Int
+  User user @relation(fields: [user_id],references: [id])
+  content String
 }

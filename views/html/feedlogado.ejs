@@ -1,27 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FeedPostAberto</title>
+    <link rel="stylesheet" href="../css/feedlogado.css"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
 </head>
-<body>
-    <h1>PARABENS VC ESTA NO FEED LOGADO</h1>
-    <h2>Seu username: <%= usuariologado.username%></h2>
-    
-    <form action="/logout" method="post">
-    <button>SAIR</button>
-    </form>
-       
-        <% for (let post of posts){ %>
-            <li>
-                <a href="perfil/<%=post.user_id %>"><%= post.content%></a>-<span><%=post.User.username%></span>
-            </li>
-         <% } %>
 
-    <form action="/CriarPost" method="post">
-        <textarea name="content" id="" cols="30" rows="10"></textarea>
-        <button>Criar post</button>
-    </form>
+<body>
+    <div class="navbar">
+        <label for="lg">
+            <div class="logo"><span><img id="img-logo" src="../img/cjr.png"></span></div>
+        </label>
+        <form action="/">
+            <button id="lg" style="display: none;">AAAA</button>
+        </form>        <div class="navbar-direito">
+            <a href="/perfil/<%=usuariologado.id %>" class="link">PERFIL</a>
+            <form action="/logout" method="post">
+                <button class="button">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="feed">
+        <% for (let i = posts.length - 1; i >= 0; i--) { %>
+            <div class="tweet">
+                <% if(!posts[i].User.imagem) {%>
+                <img class="ImagemPerfil" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+                <% }else{ %>
+                    <img style="height: 60px; width: 60px;" src="<%= posts[i].User.imagem %>" alt="Imagem do Usuário" class="ImagemPerfil">
+                    <% } %>
+                <div class="username"><a href="perfil/<%= posts[i].User.id %>"><%= posts[i].User.username %></a></div>
+                <div class="timestamp">- <%= posts[i].updated_at %></div>
+                <div class="content"><a href="post/<%= posts[i].id %>"><%= posts[i].content %></a></div>
+                <img class="Balao" src="../img/Balão.png" alt="Balao">
+            </div>
+        <% } %>   
+   
+        <div>
+           <!--<form action="/CriarPost" method="post" class="CriarPost">
+             <textarea name="content" id="" cols="30" rows="10"></textarea>
+            <button>Criar post</button>
+            </form>-->
+            <button id="publicacao">Criar Publicao</button>
+        </div>
+    </div>
+
+        <div class="modal">
+            <form action="/CriarPost" method="post">
+                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                <button style="display: block;" id="postar">POSTAR</button>
+            </form>
+            <a id="cancelar">cancelar</a>
+        </div>
+    
+
+
+        <script>
+            const modal = document.querySelector(".modal");
+            const publicacao = document.querySelector("#publicacao");
+            const cancelar = document.querySelector("#cancelar");
+
+            publicacao.addEventListener("click",()=>{
+                modal.style.display = "block";
+            })
+
+            cancelar.addEventListener("click",()=>{
+                modal.style.display = "none";
+            })
+
+
+
+        </script>
+
 </body>
 </html>

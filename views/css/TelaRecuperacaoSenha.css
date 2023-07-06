@@ -175,3 +175,15 @@ body {
         #acesse-conta {
             text-decoration: underline;
         }
+        #error-message{
+            text-align: center;
+            border-radius: 16px;
+            margin-top: 10px;
+            width: 60%;
+            background-color: #ff6c70;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 30px;
+            padding-right: 30px;
+            display: none;
+          }
