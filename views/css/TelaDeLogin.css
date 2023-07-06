@@ -1,14 +1,22 @@
+:root{
+    --cor-geral: #111E3E;
+    --cor-partes: #222E50;
+    --cor-navbar: #8BC34A;
+    --cor-primaria: #D9D9D9;
+    --cor-segundaria: #71767B;
+
+}
+
 body {
-    background-color: #111E3E;
-    margin: 0;
-    padding: 0;
+    background-color: var(--cor-geral);
     font-family: 'Inter';
 }
+
 
 .navbar {
     width: 100%;
     height: 86px;
-    background: #8BC34A;
+    background: var(--cor-navbar);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,29 +24,36 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+
 }
+
 #img-logo {
     margin-top: 4px;
     margin-bottom: 4px;
     margin-left: 32px;
     margin-right: 32px;
     cursor: pointer;
+
 }
+
 .logo {
-    background: #D9D9D9;
+    background: var(--cor-primaria);
     width: 124px;
     height: 44px;
     border-radius: 16px;
+
 }
 .navbar-direito {
     display: flex;
     align-items: center;
+
 }
+
 .button {
     margin-left: 10px;
     padding: 8px 16px;
-    background: #222E50;
-    color: #fff;
+    background: var(--cor-geral);
+    color: var(--cor-primaria);
     border: none;
     border-radius: 16px;
     cursor: pointer;
@@ -49,30 +64,33 @@ body {
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
+
 }
+
 .link {
     margin-left: 18px;
-    color: #222E50;
+    color: var(--cor-geral);
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
     text-decoration: none;
+
 }
+/*Criação do Body*/
 
 .BoxLogin {
-    background: #222E50;
-    text-align: center;
+    background: var(--cor-partes);
     position: absolute;
-    width: 547px;
-    height: 605px;
+    width: 550px;
+    height: 600px;
     left: 50%;
     top: 55%;
     transform: translate(-50%, -50%);
-    display: grid;
     border-radius: 15px;
 
 }
+
 .ImagemPerfil {
     padding-top: 8%;
     padding-left: 33%;
@@ -81,69 +99,80 @@ body {
 
 form{
     display: grid;
+
 }
 .AtrasLogin{
-    z-index: 1;
     border-radius: 10px;
     width: 200px;
     height: 50px;
     margin-top: 10%;
     margin-left: 15%;
-    background-color: #71767B;
+    background-color: var(--cor-segundaria);
+
 }
+
 .EspacoLogin{
-    background-color: #D9D9D9;
+    background-color: var(--cor-primaria);
     border-color: transparent;
     font-size: medium;
     padding-left: 5%;
-    z-index: 2;
+    z-index: 1;
     border-radius: 15px;
     margin-left: 23%;
     width: 170%;
     height: 44px;
+
 }
+
 .SimboloPerfilPequeno{
-    z-index: 2;
     float: left;
     margin-top: -33px;
     margin-left: 15px;
+
 }
+
 .AtrasSenha{
-    z-index: 1;
     border-radius: 15px;
     width: 200px;
     height: 50px;
     margin-top: 8%;
     margin-left: 15%;
-    background-color: #71767B;
+    background-color: var(--cor-segundaria);
+
 }
 
 .EspacoSenha{
-    background-color: #D9D9D9;
+    background-color: var(--cor-primaria);
     border-color: transparent;
     font-size: medium;
     padding-left: 5%;
-    z-index: 2;
+    z-index: 1;
     border-radius: 15px;
     margin-left: 23%;
     width: 170%;
     height: 44px;
-    margin-bottom:20px;
-    display: flex;
+
 }
+
 .SimboloCadeado{
-    z-index: 2;
     float: left;
-    margin-top: -55px;
+    margin-top: -35px;
     margin-left: 15px;
+
 }
 
 .EsqueceuSenha {
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
     text-decoration:underline;
-    padding-bottom: 50%;
-    margin-top: 10%;
-    color:#C0C0C0;	
+    color: var(--cor-segundaria);
+
 }
+
 .BotãoEntrar{
     position: absolute;
     margin-top: 10%;
@@ -155,9 +184,11 @@ form{
     height: 45px;
     border-color: transparent;
     font-size: medium;
-    background-color: #D9D9D9;
+    background-color: var(--cor-primaria);
+    cursor: pointer;
 
 }
+
 
 .error-message{
     text-align: center;
@@ -186,9 +217,10 @@ form{
   }
 
   .SimboloMostrarSenha{
+    position: absolute;
+    left: 82%;
+    margin-top: 20.1%;
     display: flex;
-    margin-top: 105px;
-    margin-right: 50px;
   }
   
   
