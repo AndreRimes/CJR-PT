@@ -1,14 +1,22 @@
+:root{
+    --cor-geral: #111E3E;
+    --cor-partes: #222E50;
+    --cor-navbar: #8BC34A;
+    --cor-primaria: #D9D9D9;
+    --cor-segundaria: #71767B;
+
+}
+
 body {
-            margin: 0;
-            padding: 0;
             font-family: 'Inter';
-            background: #111E3E;
+            background: var(--cor-geral);
+
         }
 
         .barra {
             width: 100%;
             height: 86px;
-            background: #8BC34A;
+            background: var(--cor-navbar);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -16,13 +24,15 @@ body {
             position: fixed;
             top: 0;
             left: 0;
+
         }
 
         .logo-menor {
-            background: #ffffff;
+            background: var(--cor-primaria);
             width: 124px;
             height: 44px;
             border-radius: 16px;
+
         }
 
         #logo-menor {
@@ -31,18 +41,20 @@ body {
             margin-left: 32px;
             margin-right: 32px;
             cursor: pointer;
+
         }
 
         .barra-botoes {
             display: flex;
             align-items: center;
+
         }
 
         .botao {
             margin-left: 10px;
             padding: 8px 16px;
-            background: #222E50;
-            color: #FFFFFF;
+            background: var(--cor-geral);
+            color: var(--cor-primaria);
             border: none;
             border-radius: 16px;
             cursor: pointer;
@@ -53,45 +65,49 @@ body {
             font-weight: 700;
             font-size: 16px;
             line-height: 19px;
+
         }
 
         .criar-conta {
             margin-left: 18px;
-            color: #222E50;
+            color: var(--cor-partes);
             font-style: normal;
             font-weight: 700;
             font-size: 16px;
             line-height: 19px;
             text-decoration: none;
+
         }
+
+        /*Criação do Body*/
 
         .menu {
             
             position: absolute;
-            width: 547px;
-            height: 723px;
-            left: 1000px;
-            top: 170px;
+            width: 550px;
+            height: 720px;
+            left: 1100px;
+            top: 150px;
             display: flex;
             align-items: center;
             align-content: center;
             flex-direction: column;
             justify-content: center;
-            background: #222E50;
-            border-radius: 10px;
+            background: var(--cor-partes);
+            border-radius: 15px;
+
         }
 
         .possui-conta {
             position: absolute;
-            top: 570px;
-            margin-top: 12px;
-            color: #111E3E;
-            font-family: 'Inter';
+            top: 550px;
+            color: var(--cor-segundaria);
             font-style: normal;
             font-weight: 700;
             font-size: 16px;
             line-height: 19px;
             text-decoration-line: none;
+
         }
 
         .info {
@@ -100,80 +116,67 @@ body {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 20px;
-            
-            
-            
+               
         }
 
         .info input{
-            
-            width: 401px;
+            width: 400px;
             height: 60px;
             font-size: 16px;
             border-radius: 4px;
-            font-style: normal;
             font-weight: 700;
             font-size: 16px;
             line-height: 19px;
             border-radius: 15px;
-            background: #D9D9D9;
+            background: var(--cor-primaria);
             margin-bottom: 15px;
-            color: #111E3E;
+            padding-left: 2%;
+            color: var(--cor-geral);
         }
-
-        
 
         .botao-cadastrar {
             position: absolute;
             top: 600px;
-            width: 283px;
+            width: 300px;
             height: 50px;
             margin-top: 17px;
             margin-bottom: 20px;
             padding: 15px 117px;
-            background: #ffffff;
+            background: var(--cor-primaria);
             border: none;
             border-radius: 15px;
             cursor: pointer;
-            color: #222E50;
+            color: var(--cor-geral);
             font-style: normal;
             font-weight: 700;
             font-size: 16px;
             line-height: 19px;
   
         }
-        .titulo-senha {
 
+        .titulo-senha {
             position: absolute;
             width: 363px;
             height: 186.71px;
             left: 70px;
             top: 60px;
-
             font-family: 'Inter';
             font-style: normal;
             font-weight: 700;
             font-size: 32px;
             line-height: 39px;
-
-            color: #FFFFFF;
-
-            opacity: 0.7;
+            color: var(--cor-primaria);
 
         }
         
-
         .img_fundo {
             position: absolute;
-            width: 778px;
-            height: 451px;
-            left: 0px;
-            top: 238px;
+            opacity: 80%;
         }
   
         #acesse-conta {
             text-decoration: underline;
+            
         }
         #error-message{
             text-align: center;
