@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="../css/TelaPerfilUsuario.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+      <div class="navbar">
+        <label for="princ">
+        <div class="logo"><span><img id="img-logo" src="../img/cjr.png"></span></div>
+      </label>
+      <form action="/">
+        <button id="princ" style="display: none;" type="submit">AAAA</button>
+      </form>
+        <div class="navbar-direito">
+          <a href="/perfil/<%=usuariologado.id %>" class="link">PERFIL</a>
+          <form action="/logout" method="post">
+                <button type="submit" class="button">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="feed">
+      <div class="post-bg"></div>    
+      <div class="profile">
+        <% if(!usuario.imagem) {%>
+          <img class="phot" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+          <% }else{ %>
+              <img class="photo" src="<%=usuario.imagem%>">
+          <% } %>
+          <div class="name"><%= usuario.username %></div>
+      
+          <div class="organiza">
+          <img src="../img/predio.png" id="cor-icone1" alt="Ícone de Prédio">
+          <div class="job"><%= usuario.cargo %></div>
+          <img src="../img/email.png" id="cor-icone2" alt="Ícone de Carta">
+          <div class="contact"><%= usuario.email %></div>
+      </div>
+      </div>
+      <div class="line"></div>
+  
+      <div class="primeiro-tweet">
+        <% if(!usuario.imagem) {%>
+          <img class="photo" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+          <% }else{ %>
+              <img class="photo" src="<%=usuario.imagem%>">
+          <% } %>
+        <div class="nome"><%= usuario.username %></div>
+        <div class="horario"> <%= usuario.posts[usuario.posts.length -1].updated_at %></div>
+        <div class="conteudo"><a href="/post/<%= usuario.posts[usuario.posts.length -1].id %>"><%= usuario.posts[usuario.posts.length -1].content %></a></div>
+    </div>
+    <% for (let i = usuario.posts.length - 2; i >= 0; i--) { %>
+      <div class="tweet">
+        <% if(!usuario.imagem) {%>
+          <img class="photo" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+          <% }else{ %>
+              <img class="photo" src="<%=usuario.imagem%>">
+          <% } %>
+        <div class="nome"><%= usuario.username %></div>
+        <div class="horario"><%= usuario.posts[i].updated_at %></div>
+        <div class="conteudo"><a href="/post/<%= usuario.posts[i].id %>"><%= usuario.posts[i].content %></a></div>
+
+      </div> 
+    <% } %>
+    </div>
+
+<script>
+
+</script>
+</body>
+</html>

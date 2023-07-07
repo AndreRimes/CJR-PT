@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PAGINA DO POST</h1>
+    <h1><%=usuario.username%></h1>
+
+
+    <p><%=post.content%></p>
+    <% if (post.coments && post.coments.length > 0) { %>
+        <ul>
+          <% post.coments.forEach((coment) => { %>
+            <li><%= coment.content%></li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>esse post nao tem nenhum comentario</p>
+      <% } %>
+
+      <form action="/CriarComent/<%=post.id%>" method="post">
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <button>Criar comentario</button>
+        </form>
+
+</body>
+</html>
