@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TelaDeLogin</title>
+    <link rel="stylesheet" href="../css/TelaDeLogin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/TelaDeCadastro.css">
+<body>
+    <!-- Criação da NavBar-->
+    <div class="navbar">
+
+        <label for="lg">
+            <div class="logo"><span><img id="img-logo" src="../img/cjr.png"></span></div>
+        </label>
+        <form action="/">
+            <button id="lg" style="display: none;">AAAA</button>
+        </form>
+        <div class="navbar-direito">
+            <a href="/cadastro" class="link">Criar Conta</a>
+            <form action="/login">
+                <button type="submit" class="button">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Criação da caixa de Login-->
+    <form method="post" action="/login" id="form">
+    <div class="princ-message">
+        <div class="message">
+         <% if (success && success.length > 0) { %>
+            <div class="success-message">
+              <%= success[0] %>
+            </div>
+          <% } %>
+          
+          <% if (error && error.length > 0) { %>
+            <div class="error-message">
+              <%= error[0] %>
+            </div>
+          <% } %>
+        </div>
+        <div class="BoxLogin">
+        <main>
+                <img class="ImagemPerfil" src="../img/ImagemPerfil.png" alt="ImagemPerfil">
+                <div class="AtrasLogin">
+                    <input class="EspacoLogin" type="email" placeholder="Login" name="email">
+                    <img src="../img/SimboloPerfilPequeno.png" alt="SimboloPerfilPequeno" class="SimboloPerfilPequeno">
+                </div>
+                <div class="AtrasSenha">
+                    <input class="EspacoSenha" type="password" placeholder="Senha" name="senha">
+                    <img src="../img/SimboloMostrarSenha.png" alt="SimboloMostrarSenha" class="SimboloMostrarSenha">
+                    <img src="../img/SimboloCadeado.png" alt="SimboloCadeado" class="SimboloCadeado">
+                </div>
+                <a class="EsqueceuSenha" href="/recuperacao">Esqueceu a senha?</a>
+                <input class="BotãoEntrar" type="submit" value="Entrar" id="">
+            </div>
+        </main>
+    </form>
+</div>
+
+
+
+    <script>
+      const MostrarSenha = document.querySelector(".SimboloMostrarSenha");
+      const inputSenha = document.querySelector(".EspacoSenha");
+      const form = document.querySelector("form");
+
+      MostrarSenha.addEventListener("click", () => {
+        if (inputSenha.type === "password") {
+            inputSenha.type = "text";
+        } else {
+        inputSenha.type = "password";
+        }
+        });
+    </script>
+</body>
+</html>

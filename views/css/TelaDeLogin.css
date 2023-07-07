@@ -1,0 +1,239 @@
+:root{
+    --cor-geral: #111E3E;
+    --cor-partes: #222E50;
+    --cor-navbar: #8BC34A;
+    --cor-primaria: #D9D9D9;
+    --cor-segundaria: #71767B;
+
+}
+
+body {
+    background-color: var(--cor-geral);
+    font-family: 'Inter';
+}
+
+
+.navbar {
+    width: 100%;
+    height: 86px;
+    background: var(--cor-navbar);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+
+#img-logo {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 32px;
+    margin-right: 32px;
+    cursor: pointer;
+
+}
+
+.logo {
+    background: var(--cor-primaria);
+    width: 124px;
+    height: 44px;
+    border-radius: 16px;
+
+}
+.navbar-direito {
+    display: flex;
+    align-items: center;
+
+}
+
+.button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background: var(--cor-geral);
+    color: var(--cor-primaria);
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    width: 92px;
+    height: 48px;
+    margin-right: 48px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+}
+
+.link {
+    margin-left: 18px;
+    color: var(--cor-geral);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: none;
+
+}
+/*Criação do Body*/
+
+.BoxLogin {
+    background: var(--cor-partes);
+    position: absolute;
+    width: 550px;
+    height: 600px;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+
+}
+
+.ImagemPerfil {
+    padding-top: 8%;
+    padding-left: 33%;
+
+}
+
+form{
+    display: grid;
+
+}
+.AtrasLogin{
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+    margin-top: 10%;
+    margin-left: 15%;
+    background-color: var(--cor-segundaria);
+
+}
+
+.EspacoLogin{
+    background-color: var(--cor-primaria);
+    border-color: transparent;
+    font-size: medium;
+    padding-left: 5%;
+    z-index: 1;
+    border-radius: 15px;
+    margin-left: 23%;
+    width: 170%;
+    height: 44px;
+
+}
+
+.SimboloPerfilPequeno{
+    float: left;
+    margin-top: -33px;
+    margin-left: 15px;
+
+}
+
+.AtrasSenha{
+    border-radius: 15px;
+    width: 200px;
+    height: 50px;
+    margin-top: 8%;
+    margin-left: 15%;
+    background-color: var(--cor-segundaria);
+
+}
+
+.EspacoSenha{
+    background-color: var(--cor-primaria);
+    border-color: transparent;
+    font-size: medium;
+    padding-left: 5%;
+    z-index: 1;
+    border-radius: 15px;
+    margin-left: 23%;
+    width: 170%;
+    height: 44px;
+
+}
+
+.SimboloCadeado{
+    float: left;
+    margin-top: -35px;
+    margin-left: 15px;
+
+}
+
+.EsqueceuSenha {
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    text-decoration:underline;
+    color: var(--cor-segundaria);
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+.BotãoEntrar{
+    position: absolute;
+    margin-left: 20%;
+    border-radius: 15px;
+    bottom: 50px;
+    right: 25%;
+    width: 50%;
+    height: 45px;
+    border-color: transparent;
+    font-size: medium;
+    background-color: var(--cor-primaria);
+    cursor: pointer;
+
+}
+
+
+.error-message{
+    z-index: 2;
+    text-align: center;
+    border-radius: 16px;
+    margin-top: 10px;
+    background-color: #ff6c70;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 10x;
+    margin:auto;
+  }
+
+  .success-message{
+    text-align: center;
+    border-radius: 16px;
+    margin-top: 10px;
+    width: 60%;
+    background-color: #90EE90;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .SimboloMostrarSenha{
+    position: absolute;
+    left: 82%;
+    margin-top: 20.1%;
+    display: flex;
+  }
+
+  .message{
+    margin-left: 100%;
+    z-index: 2;
+    margin: 175px;
+    width: 547px;
+  }
+
+  .princ-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
