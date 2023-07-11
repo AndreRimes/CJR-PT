@@ -45,6 +45,7 @@
       <div class="line"></div>
   
       <div class="primeiro-tweet">
+      <% if(usuario.posts.length != 0){ %>
         <% if(!usuario.imagem) {%>
           <img class="photo" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
           <% }else{ %>
@@ -66,8 +67,11 @@
         <div class="conteudo"><a href="/post/<%= usuario.posts[i].id %>"><%= usuario.posts[i].content %></a></div>
 
       </div> 
-    <% } %>
-    </div>
+    <% }}else{%>
+      <div class="tweet" style="color:white;">
+          Este usuario nao possui nenhum tweet
+      </div>
+      <% } %>
 
 <script>
 

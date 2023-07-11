@@ -90,7 +90,7 @@ app.post("/login", async (req, res) => {
     return 
    }
    req.flash('success', 'Login efetuado com sucesso');
-   res.redirect("/feedlogado");
+   res.redirect("/");
 
   } catch (e) {
     console.log("Usuario/senha incorreto");
@@ -99,10 +99,25 @@ app.post("/login", async (req, res) => {
     res.status(500);
   }
 });
-  app.get('/recuperacao', (req, res) => {
+  app.get('/recuperacao', async(req, res) => {
     res.sendFile(__dirname + '/views/html/TelaRecuperacaoSenha.html');
   });
 
+  app.post("/recuperacao", async (req, res) => {
+    console.log(req.body);
+    const { email, senha } = req.body;
+    const hash = await bcrypt.hash(senha, 12);
+    const usuario = await prisma.user.update({
+      where: {
+        email: email,
+      },
+      data: {
+        senha: hash,
+      },
+    });
+    console.log(usuario);
+    res.redirect("/login");
+  });
 
 
 app.get("/feedlogado",async(req,res)=>{
@@ -208,10 +223,7 @@ app.post("/CriarComent/:id", async(req,res)=>{
 
 
 app.get("/",async(req,res)=>{
-  if(req.session.user_id){
-    res.redirect("/feedlogado");
-    return
-  }else{
+  if(!req.session.user_id){
     const posts = await prisma.post.findMany({
       include:{
         User: true,
@@ -219,8 +231,67 @@ app.get("/",async(req,res)=>{
       }
     });
   res.render("html/feedaberto", {posts});
+  return
+  }else{
+    const usuario = await prisma.user.findUnique({
+      where:{
+        id:req.session.user_id
+      }
+    })
+    if(usuario.admin){
+      res.redirect("/feedadmin");
+      return
+    }
+    else{
+      res.redirect("/feedlogado");
+    }
   }
 })
+
+
+app.get("/feedadmin",async(req,res)=>{
+    if(!req.session.user_id){
+      res.send("vc nao tem permisao para entrar nessa pagina");
+      return
+    }
+    const usuariologado = await prisma.user.findUnique({
+      where:{
+        id:req.session.user_id
+      },
+      include:{
+        posts: true,
+        coments:true
+      }
+    })
+    const posts = await prisma.post.findMany({
+      include:{
+        User: true,
+        coments:true
+      }
+    });
+    if(!usuariologado.admin){
+      res.send("vc nao tem permisssao para entrar nessa pagina");
+      return
+    }else{
+      res.render("html/feedadmin",{usuariologado, posts});
+    }
+})
+
+app.delete('/posts/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedPost = await prisma.post.delete({
+      where: {
+        id: parseInt(id)
+      }
+    });
+    console.log(deletedPost);
+    res.redirect("/feedadmin");
+  } catch (error) {
+    console.error('Erro ao deletar o post:', error);
+    res.status(500).json({ error: 'Ocorreu um erro ao excluir o post' });
+  }
+});
 
 app.listen(3000,()=>{
     console.log("Ouvindo na porta 3000");

@@ -13,69 +13,48 @@
     <div class="barra">
         <div class="logo-menor"><img id="logo-menor" src="../img/cjr.png"></div>
         <div class="barra-botoes">
-            <a href="/cadastro" class="criar-conta">Criar Conta </a>
+            <a href="/cadastro" class="criar-conta">Criar Conta</a>
             <form action="/login">
-            <button class="botao">Entrar</button>
+                <button class="botao">Entrar</button>
             </form>
         </div>
     </div>
 
-
-    <div id="error-message">As senhas nao sao iguais</div>
-
-    <form action="/recupercao" method="post" id="form-prin">
-        <img style="top: 300px; left: 225px;" src="../img/bg.png" class="img_fundo">
-        <div class="menu">
+    <img style="top: 300px; left: 225px;" src="../img/bg.png" class="img_fundo">
+    <form action="/recuperacao" , method="post" id="form">
+    <div class="menu">
+        <h1 class="titulo-senha">Bem-vindo de volta, fulano! Escolha sua nova senha</h1>
         <div class="info">
-
-            <h1 style="
-            width: 401px;
-            left: 0px;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 40px;
-            border-radius: 15px;
-            color: #FFFFFF;
-            opacity: 0.7;"> Senha nova </h1>
-
-            <input class="input" type="password" placeholder="" id="input1">
-            <h1 style="
-            width: 401px;
-            left: 0px;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 40px;
-            color: #FFFFFF;
-            opacity: 0.7;"> Digite novamente sua senha </h1>
-            <input class="input" type="password" placeholder="" id="input2">
-
+            <h1 id="email">Digite seu e-mail</h1>
+            <input class="input" type="email" placeholder="" id="email" name="email">
+            <h1 id="senha">Senha nova</h1>
+            <input class="input" type="password" placeholder="" name="senha" id="senha1">
+            <h1 id="senha">Digite novamente sua senha</h1>
+            <input class="input" type="password" placeholder="" id="senha2">
+            
         </div>
-
-        <h1 class="titulo-senha">  Bem vindo de volta, fulano! escolha sua nova senha </h1>
-        <a href="/login" class="possui-conta">Possui conta?<span id="acesse-conta">Acesse aqui</span></a>
+        
+        
+        <a href="TelaDeLogin.html" class="possui-conta">Possui conta? <span id="acesse-conta">Acesse aqui</span></a>
         <button class="botao-cadastrar">Cadastrar</button>
-
-        </div>
+    </div>
     </form>
 
 
     <script>
-          const form  = document.querySelector("#form-prin");
-          const input1 = document.querySelector("#input1");
-          const input2 = document.querySelector("#input2");
-          const error = document.querySelector("#error-message");
+          const form = document.querySelector("#form");
+          const senha1 = document.querySelector("#senha1");
+          const senha2 = document.querySelector("#senha2");
+          const email = document.querySelector("#email")
 
-        form.addEventListener('submit', (e)=>{
-            if(input1.value !== input2.value){
-                error.style.display = "block";
-                alert("AS SENHAS NAO SAO IGUAIS");
+
+          form.addEventListener("submit",(e)=>{
+            if(senha1.value != senha2.value){
                 e.preventDefault();
+                alert("senhas precisam ser iguais");
             }
-        })
+          })
+
     </script>
 </body>
 </html>

@@ -1,14 +1,23 @@
+:root{
+    --cor-geral: #111E3E;
+    --cor-partes: #222E50;
+    --cor-navbar: #8BC34A;
+    --cor-primaria: #D9D9D9;
+    --cor-segundaria: #71767B;
+
+}
 body {
             margin: 0;
             padding: 0;
             font-family: 'Inter';
-            background: #111E3E;
+            background: var(--cor-geral);
+            
         }
 
         .barra {
             width: 100%;
             height: 86px;
-            background: #8BC34A;
+            background: var(--cor-navbar);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -19,7 +28,7 @@ body {
         }
 
         .logo-menor {
-            background: #ffffff;
+            background: var(--cor-primaria);
             width: 124px;
             height: 44px;
             border-radius: 16px;
@@ -41,8 +50,8 @@ body {
         .botao {
             margin-left: 10px;
             padding: 8px 16px;
-            background: #222E50;
-            color: #FFFFFF;
+            background: var(--cor-geral);
+            color: var(--cor-primaria);
             border: none;
             border-radius: 16px;
             cursor: pointer;
@@ -57,7 +66,7 @@ body {
 
         .criar-conta {
             margin-left: 18px;
-            color: #222E50;
+            color: var(--cor-partes);
             font-style: normal;
             font-weight: 700;
             font-size: 16px;
@@ -85,7 +94,7 @@ body {
             position: absolute;
             top: 570px;
             margin-top: 12px;
-            color: #111E3E;
+            color: var(--cor-segundaria);
             font-family: 'Inter';
             font-style: normal;
             font-weight: 700;
@@ -95,33 +104,29 @@ body {
         }
 
         .info {
-            position: absolute;
+            padding-bottom: 30%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             margin-top: 20px;
             
-            
-            
-        }
-
-        .info input{
-            
+          }
+        
+        .info input {
             width: 401px;
             height: 60px;
             font-size: 16px;
             border-radius: 4px;
-            font-style: normal;
+            font-family: 'Inter';
             font-weight: 700;
-            font-size: 16px;
             line-height: 19px;
-            border-radius: 15px;
-            background: #D9D9D9;
+            border: none;
+            padding: 0 10px;
             margin-bottom: 15px;
-            color: #111E3E;
+            background: var(--cor-primaria);
+            border-radius: 15px;
         }
-
         
 
         .botao-cadastrar {
@@ -132,11 +137,11 @@ body {
             margin-top: 17px;
             margin-bottom: 20px;
             padding: 15px 117px;
-            background: #ffffff;
+            background: var(--cor-primaria);
             border: none;
             border-radius: 15px;
             cursor: pointer;
-            color: #222E50;
+            color: var(--cor-geral);
             font-style: normal;
             font-weight: 700;
             font-size: 16px;
@@ -145,7 +150,9 @@ body {
         }
         .titulo-senha {
 
-            position: absolute;
+            
+            padding-top: 10%;
+            padding-right: 10%;
             width: 363px;
             height: 186.71px;
             left: 70px;
@@ -157,13 +164,34 @@ body {
             font-size: 32px;
             line-height: 39px;
 
-            color: #FFFFFF;
+            color: var(--cor-primaria);
 
             opacity: 0.7;
 
         }
-        
-
+        #senha{
+            
+            width: 401px;
+            left: 0px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 100%;
+            color: var(--cor-primaria);
+            opacity: 0.7;
+        }
+        #email{
+            width: 401px;
+            left: 0px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 100%;
+            color: var(--cor-primaria);
+            opacity: 0.7;
+        }
         .img_fundo {
             position: absolute;
             width: 778px;
@@ -175,15 +203,3 @@ body {
         #acesse-conta {
             text-decoration: underline;
         }
-        #error-message{
-            text-align: center;
-            border-radius: 16px;
-            margin-top: 10px;
-            width: 60%;
-            background-color: #ff6c70;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 30px;
-            padding-right: 30px;
-            display: none;
-          }

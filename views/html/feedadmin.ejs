@@ -1,11 +1,22 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PARABEN VC ESTA NO FEED ADMIN</h1>
+</body>
+</html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeedPostAberto</title>
-    <link rel="stylesheet" href="../css/feedlogado.css">
+    <link rel="stylesheet" href="../css/feedadmin.css">
     <link rel="stylesheet" href="../sparksuite-simplemde-markdown-editor-6abda7a/src/css/simplemde.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,9 +47,10 @@
                     <img style="height: 60px; width: 60px;" src="<%= posts[i].User.imagem %>" alt="Imagem do Usuário" class="ImagemPerfil">
                     <% } %>
                 <div class="username"><a href="perfil/<%= posts[i].User.id %>"><%= posts[i].User.username %></a></div>
-                <div class="timestamp">- <%= posts[i].updated_at %></div>
+                <div class="timestamp">-<%= posts[i].updated_at %></div>
+                <img id="deleteBtn-<%= posts[i].id %>" class="lixo" src="../img/lixo.png" alt="">
                 <div class="content"><a href="post/<%= posts[i].id %>"><%= posts[i].content %></a></div>
-                    <img id="balao" class="Balao" src="../img/Balão.png" alt="Balao">
+                <img id="balao" class="Balao" src="../img/Balão.png" alt="Balao">
                 </form>
             </div> 
             <% } %>  
@@ -71,6 +83,7 @@
             const modal_coment = document.querySelector("#modal-coment")
 
 
+
             openModalBtn.addEventListener("click", () => {
                 modal.style.display = "block";
             });
@@ -87,9 +100,27 @@
                 }else{
                 console.log("Texto salvo:", text);
                 modal.style.display = "none";
+            }});
+
+
+            const deleteBtns = document.querySelectorAll(".lixo");
+
+            function deletePost(postId) {
+            fetch(`/posts/${postId}`, {
+            method: "DELETE"
+            })
+            .then(result => {window.location.href = '/';})
+            .catch((error) => {console.error("Erro ao fazer a requisição DELETE:", error); });
             }
 
+            deleteBtns.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+            const postId = e.target.id.split("-")[1];
+             deletePost(postId);
             });
+            });
+
+
 
         </script>
 

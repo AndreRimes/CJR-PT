@@ -29,7 +29,7 @@ model post{
   id Int @id @default(autoincrement())
   User user @relation(fields: [user_id], references: [id])
   user_id Int
-  content String 
+  content String
   updated_at DateTime @updatedAt
   coments coment[]
 }
@@ -37,7 +37,7 @@ model post{
 model coment{
   id Int @id @default(autoincrement())
   post_id Int
-  Post post @relation(fields: [post_id],references: [id])
+  Post post @relation(fields: [post_id],references: [id],onDelete: Cascade)
   user_id Int
   User user @relation(fields: [user_id],references: [id])
   content String
