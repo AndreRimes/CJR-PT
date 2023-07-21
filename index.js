@@ -3,9 +3,8 @@ const express = require("express");
 const bcrypt = require("bcrypt")
 const session = require("express-session");
 const flash = require('connect-flash');
-const multer = require("multer");
+const marked = require('marked');
 
-const upload = multer({dest:'/uploads'});
 const app = express();
 app.use(express.static(__dirname + '/views'));
 app.use(express.json());
@@ -26,9 +25,9 @@ app.get('/cadastro', (req, res) => {
   res.render("html/TelaDeCadastro", { success, erro });
 });
 
-app.post("/cadastro",upload.single('imagem') , async(req,res)=>{
+app.post("/cadastro", async(req,res)=>{
     const {username,imagem,email,genero,cargo,senha} = req.body
-    const hash = await bcrypt.hash(senha,12)
+    const hash = await bcrypt.hash(senha, 12);
     try{
       if(cargo === "Admin" || cargo === "admin"){
       User = await prisma.user.create({
@@ -104,25 +103,14 @@ app.post("/login", async (req, res) => {
   });
 
   app.post("/recuperacao", async (req, res) => {
-    console.log(req.body);
-    const { email, senha } = req.body;
-    const hash = await bcrypt.hash(senha, 12);
-    const usuario = await prisma.user.update({
-      where: {
-        email: email,
-      },
-      data: {
-        senha: hash,
-      },
-    });
-    console.log(usuario);
-    res.redirect("/login");
+    const {email,senha} = 
   });
 
 
 app.get("/feedlogado",async(req,res)=>{
   if(!req.session.user_id){
-    return res.send("VC NAO TEM PERMISSAO PARA ENTAR");
+    res.redirect("/sempermissao");
+    return
   }
   const posts = await prisma.post.findMany({
     include:{
@@ -148,6 +136,10 @@ app.post("/logout",(req,res)=>{
 })
 
 app.post("/CriarPost",async(req,res)=>{
+  if(!req.session.user_id){
+    res.redirect("/sempermissao");
+    return
+  }
   const { content } = req.body
   const post = await prisma.post.create({
     data:{
@@ -156,15 +148,14 @@ app.post("/CriarPost",async(req,res)=>{
     }
   })
   console.log(post);
-  res.redirect("/feedlogado");
+  res.redirect("/");
 })
 
 app.get('/perfil/:id', async (req, res) => {
   if (!req.session.user_id) {
-    res.send('VOCÊ PRECISA ESTAR LOGADO PARA ENTRAR NESSA PÁGINA');
+    res.redirect("/sempermissao");
     return;
   }
-
   try {
     const usuario = await prisma.user.findUnique({
       where: {
@@ -179,7 +170,14 @@ app.get('/perfil/:id', async (req, res) => {
           id:req.session.user_id
         }
       })
-    res.render('html/perfil', { usuario,usuariologado });
+      if (parseInt(req.params.id) === req.session.user_id){
+        res.redirect("/meuperfil");
+        return
+     }
+    else{
+      res.render('html/perfil', { usuario,usuariologado });
+      return
+    }
   } catch (error) {
     console.error('Usuario nao encontrado', error);
     res.send('Usuario nao encontrado');
@@ -188,27 +186,41 @@ app.get('/perfil/:id', async (req, res) => {
 
 app.get("/post/:id",async(req,res)=>{
   if (!req.session.user_id) {
-    res.send('VOCÊ PRECISA ESTAR LOGADO PARA ENTRAR NESSA PÁGINA');
+    res.redirect("/sempermissao");
     return;
   }
   const id = req.params.id
   const post = await prisma.post.findUnique({
-    where:{
-      id: parseInt(id)
+    where: {
+      id: parseInt(id),
     },
-    include:{
-      coments : true
-    }
-  })
+    include: {
+      coments: {
+        include: {
+          User: true,
+        },
+      },
+      User: true,
+    },
+  });
   const usuario = await prisma.user.findUnique({
     where:{
       id: post.user_id
     }
   })
-    res.render("html/post.ejs", {post,usuario});
+  const usuariologado = await prisma.user.findUnique({
+    where:{
+      id:req.session.user_id
+    }
+  })
+    res.render("html/post.ejs", {post,usuario,usuariologado});
 })
 
 app.post("/CriarComent/:id", async(req,res)=>{
+  if(!req.session.user_id){
+    res.redirect('/sempermissao');
+    return
+  }
   const { content } = req.body
   const post = await prisma.coment.create({
     data:{
@@ -218,8 +230,31 @@ app.post("/CriarComent/:id", async(req,res)=>{
     }
   })
   console.log(post);
-  res.redirect("/feedlogado");
+  res.redirect(`/post/${req.params.id}`);
 })
+
+app.delete('/coments/:comentId', async (req, res) => {
+  if(!req.session.user_id){
+    return res.redirect("/sempermissao")
+  }
+  const usuario = await prisma.user.findUnique({
+    where:{
+      id:req.session.user_id
+    }});
+if(!usuario.admin){
+  return res.redirect("/sempermissao")
+}
+  const { comentId } = req.params;
+  try {
+    const deletedComent = await prisma.coment.delete({
+      where: { id: +comentId },
+    });
+  res.redirect(`/post/${deletedComent.post_id}`);}
+  catch (error) {
+      console.error('Comentario nao encontrado', error);
+      res.send('Comentario nao encontrado');
+    }
+  });
 
 
 app.get("/",async(req,res)=>{
@@ -251,8 +286,8 @@ app.get("/",async(req,res)=>{
 
 app.get("/feedadmin",async(req,res)=>{
     if(!req.session.user_id){
-      res.send("vc nao tem permisao para entrar nessa pagina");
-      return
+      res.redirect('/sempermissao');
+      return 
     }
     const usuariologado = await prisma.user.findUnique({
       where:{
@@ -269,15 +304,20 @@ app.get("/feedadmin",async(req,res)=>{
         coments:true
       }
     });
+    const usuarios = await prisma.user.findMany()
     if(!usuariologado.admin){
-      res.send("vc nao tem permisssao para entrar nessa pagina");
+      res.redirect('/sempermissao');
       return
     }else{
-      res.render("html/feedadmin",{usuariologado, posts});
+      res.render("html/feedadmin",{usuariologado, posts, usuarios});
     }
 })
 
 app.delete('/posts/:id', async (req, res) => {
+  if(!req.session.user_id){
+    res.redirect('/sempermissao');
+    return
+  }
   const { id } = req.params;
   try {
     const deletedPost = await prisma.post.delete({
@@ -292,6 +332,84 @@ app.delete('/posts/:id', async (req, res) => {
     res.status(500).json({ error: 'Ocorreu um erro ao excluir o post' });
   }
 });
+
+app.get("/meuperfil",async(req,res)=>{
+if(!req.session.user_id){
+  res.redirect('/sempermissao');
+  return
+}
+const usuario = await prisma.user.findUnique({
+  where:{
+    id:req.session.user_id
+  },
+  include:{
+    posts: true,
+    coments:true
+  }
+})
+res.render("html/PerfilUsuarioLogado",{usuario});
+})
+
+app.post("/atualizarPerfil/:id", async (req, res) => {
+ 
+  if (req.session.user_id !== parseInt(req.params.id)) {
+    res.send("Você precisa ser o usuário para editar as informações.");
+    return;
+  } else {
+    const { email, nome, senha } = req.body;
+    const updateData = {};
+
+    if (email) {
+      updateData.email = email;
+    }
+    if (nome) {
+      updateData.username = nome;
+    }
+    if (senha) {
+      const hash = await bcrypt.hash(senha, 12);
+      updateData.senha = hash;
+    }
+
+  console.log(updateData);
+    try {
+      const usuario = await prisma.user.update({
+        where: {
+          id: +req.params.id
+        },
+        data: updateData
+      });
+      console.log(usuario);
+      res.redirect("/meuperfil");
+    } catch (e) {
+      console.log("ERRO");
+    }
+  }
+})
+
+
+app.get("/sempermissao", (req,res)=>{
+  res.render("html/sempermissao");
+})
+
+app.post("/editPost/:id", async (req, res) => {
+  const { ANDRE} = req.body
+  console.log(ANDRE);
+  try{
+    const post = await prisma.post.update({
+      where:{
+        id: parseInt(req.params.id)
+      },
+      data:{
+        content:ANDRE
+      }
+    })
+    console.log(post);
+    res.redirect(`/meuperfil`);}
+  catch(e){
+    console.log(e);
+  }
+})
+
 
 app.listen(3000,()=>{
     console.log("Ouvindo na porta 3000");

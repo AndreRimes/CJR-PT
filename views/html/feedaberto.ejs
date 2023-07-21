@@ -37,9 +37,19 @@
                     <img style="height: 60px; width: 60px;" src="<%= posts[i].User.imagem %>" alt="Imagem do Usuário" class="ImagemPerfil">
                 <% } %>
               <div class="username"><a href="/login"><%= posts[i].User.username %></a></div>
-              <div class="timestamp">- <%= posts[i].updated_at %></div>
+              <%const dataString = posts[i].updated_at;%>
+              <%const data = new Date(dataString);%>
+              <%const dia = data.getDate();%>
+              <%const mes = data.toLocaleString('default', { month: 'long' });%>
+              <% const dataFormatada = `${dia} de ${mes} `;%>
+              <div class="timestamp">- <%= dataFormatada %></div>
               <div class="content"><a href="/login"><%= posts[i].content %></a></div>
-              <img class="Balao" src="../img/Balão.png" alt="Balao">
+              <label for="balao">
+                <img style="cursor: pointer;"  class="Balao" src="../img/Balão.png" alt="Balao">
+                </label>
+                <form action="/login">
+                    <button type="submit" id="balao" style="display: none;"></button>
+                </form>
           </div>
       <% } %>        
       </div>

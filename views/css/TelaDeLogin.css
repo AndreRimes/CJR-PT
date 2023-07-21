@@ -195,38 +195,36 @@ form{
     z-index: 2;
     text-align: center;
     border-radius: 16px;
-    margin-top: 10px;
     background-color: #ff6c70;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
     padding-right: 10x;
     margin:auto;
+    margin-top: 10px;
+    margin-left: 100px;
   }
 
   .success-message{
+    z-index: 2;
     text-align: center;
     border-radius: 16px;
     margin-top: 10px;
-    width: 60%;
     background-color: #90EE90;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  .SimboloMostrarSenha{
-    position: absolute;
-    left: 82%;
-    margin-top: 20.1%;
-    display: flex;
+    padding-left: 15px;
+    padding-right: 10x;
+    margin:auto;
+    max-width: 328.188px;
+    margin-top: 10px;
+    margin-left: 100px;
   }
 
   .message{
     margin-left: 100%;
     z-index: 2;
-    margin: 175px;
+    margin: 190px;
     width: 547px;
   }
 
@@ -236,4 +234,9 @@ form{
     justify-content: center;
   }
   
-  
+  .SimboloMostrarSenha{
+    position: absolute;
+    left: 82%;
+    margin-top: 20.1%;
+    display: flex;
+  }

@@ -19,7 +19,21 @@
         <button id="princ" style="display: none;" type="submit">AAAA</button>
       </form>
         <div class="navbar-direito">
-          <a href="/perfil/<%=usuariologado.id %>" class="link">PERFIL</a>
+
+          <% if(!usuariologado.imagem) {%>
+            <label for="FotoPerfil">
+                <img class="ImagemPerfil ImgPequena" style="height: 60px; width: 60px; margin-bottom: px; cursor: pointer;" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+            </label>
+            <% }else{ %>
+                <label for="FotoPerfil">
+                    <img style="height: 60px; width: 60px; margin-bottom: 10px; cursor: pointer;" src="<%=usuariologado.imagem%>" alt="Imagem do Usuário" class="ImagemPerfil ImgPequena">
+                </label>
+                <% } %>
+         <form action="/meuperfil">
+            <button type="submit" id="FotoPerfil" style="display: none;"></button>
+         </form>  
+
+          <a href="/meuperfil" class="link">PERFIL</a>
           <form action="/logout" method="post">
                 <button type="submit" class="button">Logout</button>
             </form>
@@ -52,7 +66,12 @@
               <img class="photo" src="<%=usuario.imagem%>">
           <% } %>
         <div class="nome"><%= usuario.username %></div>
-        <div class="horario"> <%= usuario.posts[usuario.posts.length -1].updated_at %></div>
+        <%const dataString =  usuario.posts[usuario.posts.length -1].updated_at;%>
+          <%const data = new Date(dataString);%>
+          <%const dia = data.getDate();%>
+          <%const mes = data.toLocaleString('default', { month: 'long' });%>
+          <% const dataFormatada = `${dia} de ${mes} `;%>
+          <div class="horario"><%=dataFormatada%></div>
         <div class="conteudo"><a href="/post/<%= usuario.posts[usuario.posts.length -1].id %>"><%= usuario.posts[usuario.posts.length -1].content %></a></div>
     </div>
     <% for (let i = usuario.posts.length - 2; i >= 0; i--) { %>
@@ -62,8 +81,13 @@
           <% }else{ %>
               <img class="photo" src="<%=usuario.imagem%>">
           <% } %>
-        <div class="nome"><%= usuario.username %></div>
-        <div class="horario"><%= usuario.posts[i].updated_at %></div>
+          <div class="nome"><%= usuario.username %></div>
+          <%const dataString =  usuario.posts[usuario.posts.length -1].updated_at;%>
+          <%const data = new Date(dataString);%>
+          <%const dia = data.getDate();%>
+          <%const mes = data.toLocaleString('default', { month: 'long' });%>
+          <% const dataFormatada = `${dia} de ${mes} `;%>
+          <div class="horario"><%=dataFormatada%></div>
         <div class="conteudo"><a href="/post/<%= usuario.posts[i].id %>"><%= usuario.posts[i].content %></a></div>
 
       </div> 
@@ -74,7 +98,10 @@
       <% } %>
 
 <script>
+   
 
 </script>
+
+
 </body>
 </html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="../css/TelaPerfilUsuario.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+      <label for="princ">
+        <div class="logo">
+          <span>
+            <img id="img-logo" src="../img/cjr.png" alt="Logo">
+          </span>
+        </div>
+      </label>
+      <form action="/">
+        <button id="princ" style="display: none;" type="submit">AAAA</button>
+      </form>
+      <div class="navbar-direito">
+        <% if(!usuario.imagem) {%>
+          <label for="FotoPerfil">
+              <img class="ImagemPerfil ImgPequena" style="height: 60px; width: 60px; margin-bottom: px; cursor: pointer;" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+          </label>
+          <% }else{ %>
+              <label for="FotoPerfil">
+                  <img style="height: 60px; width: 60px; margin-bottom: 10px; cursor: pointer;" src="<%=usuariologado.imagem%>" alt="Imagem do Usuário" class="ImagemPerfil ImgPequena">
+              </label>
+              <% } %>
+        <a href="/meuperfil" class="link">PERFIL</a>
+        <form action="/logout" method="post">
+           <button type="submit" class="button">Logout</button>
+        </form>
+      </div>
+    </div>
+    <div class="feed">
+      <div class="post-bg"></div>
+      <div class="profile">
+        <% if(!usuario.imagem) { %>
+          <img class="photo" id="photoPerfil" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+        <% } else { %>
+          <img class="photo" id="photoPerfil" src="<%=usuario.imagem%>">
+        <% } %>
+        <button id="Editar" onClick="openModal()">Editar Perfil</button>
+        <div class="Informações">
+         <div class="name"><%= usuario.username %></div>
+          <div class="organiza">
+            <img src="../img/predio.png" id="cor-icone1" alt="Ícone de Prédio">
+            <div class="job"><%= usuario.cargo %></div>
+            <img src="../img/email.png" id="cor-icone2" alt="Ícone de Carta">
+            <div class="contact"><%= usuario.email %></div>
+         </div>
+        </div>
+      </div>
+      <div class="line"></div>
+
+      <div class="primeiro-tweet">
+        <% if(usuario.posts.length != 0) { %>
+          <% if(!usuario.imagem) { %>
+            <img class="photo" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+          <% } else { %>
+            <img class="photo" src="<%=usuario.imagem%>">
+          <% } %>
+
+          <div class="nome"><%= usuario.username %></div>
+
+          <%const dataString =  usuario.posts[usuario.posts.length -1].updated_at;%>
+          <%const data = new Date(dataString);%>
+          <%const dia = data.getDate();%>
+          <%const mes = data.toLocaleString('default', { month: 'long' });%>
+          <% const dataFormatada = `${dia} de ${mes} `;%>
+          <div class="horario"><%=dataFormatada%></div>
+          <img id="tresPontos-<%=usuario.posts[usuario.posts.length -1].id%>" src="../img/mostrar-mais-botao-com-tres-pontos.png" class="tresPontos" alt="">
+          <div class="botoes">
+          <img id="botaoeditar-<%=usuario.posts[usuario.posts.length -1].id%>" src="../img/botao-editar.png" alt="" class="botaoeditar">
+          <img id="deleteBtn-<%= usuario.posts[usuario.posts.length -1].id %>" class="lixo" src="../img/lixo.png" alt="">
+          </div>
+          <form action="/editPost/<%=usuario.posts[usuario.posts.length -1].id%>" method="post">
+            <textarea id="editpost-<%=usuario.posts[usuario.posts.length -1].id%>" name="ANDRE" class="editpost hidden" cols="30" rows="10">
+              <%= usuario.posts[usuario.posts.length -1].content %>
+            </textarea>
+            <button id="BtnEditar-<%=usuario.posts[usuario.posts.length -1].id%>" type="submit" class="BtnEditar hidden">EDITAR</button>
+          </form> 
+          <div class="conteudo" id="content-<%=usuario.posts[usuario.posts.length -1].id %>">
+            <a href="/post/<%= usuario.posts[usuario.posts.length -1].id %>"><%= usuario.posts[usuario.posts.length -1].content
+            %></a>
+          </div>
+        </div>
+        <% for (let i = usuario.posts.length - 2; i >= 0; i--) { %>
+          <div class="tweet">
+            <% if(!usuario.imagem) { %>
+              <img class="photo" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+            <% } else { %>
+              <img class="photo" src="<%=usuario.imagem%>">
+            <% } %>
+            <div class="nome"><%= usuario.username %></div>
+
+            <%const dataString = usuario.posts[i].updated_at;%>
+            <%const data = new Date(dataString);%>
+            <%const dia = data.getDate();%>
+            <%const mes = data.toLocaleString('default', { month: 'long' });%>
+            <% const dataFormatada = `${dia} de ${mes} `;%>
+            <div class="horario"><%=dataFormatada%></div>
+            <img id="tresPontos-<%=usuario.posts[i].id%>" src="../img/mostrar-mais-botao-com-tres-pontos.png" class="tresPontos" alt="">
+            <div class="botoes">
+              <img id="botaoeditar-<%=usuario.posts[i].id%>" src="../img/botao-editar.png" alt="" class="botaoeditar">
+              <img id="deleteBtn-<%= usuario.posts[i].id %>" class="lixo" src="../img/lixo.png" alt="">
+             </div> 
+             <form action="/editPost/<%=usuario.posts[i].id%>" method="post">
+              <textarea id="editpost-<%=usuario.posts[i].id%>" name="ANDRE" class="editpost hidden" cols="30" rows="10">
+                <%= usuario.posts[i].content %> 
+              </textarea>
+              <button id="BtnEditar-<%=usuario.posts[i].id%>" type="submit" class="BtnEditar hidden">EDITAR</button>
+              </form>
+            <div class="conteudo" id="content-<%=usuario.posts[i].id   %>">
+              <a href="/post/<%= usuario.posts[i].id %>"><%= usuario.posts[i].content %></a>
+            </div>
+          </div> 
+        <% }} else { %>
+          <div class="tweet" style="color:white;">
+            Este usuário não possui nenhum tweet.
+          </div>
+        <% } %>
+    </div>
+
+    <div id="modal" class="modal">
+        <form action="/atualizarPerfil/<%=usuario.id%>" method="post">
+            <div class="modal-content">
+              <img src="../img/bg.png" class="img_bg">
+              <h1>Editar Informações  do seu Perfil</h1>
+                <input type="text"   class="input"  name="nome" placeholder="Nome">
+                <select class="select" id="selGen" name="genero">
+                    <option value=""> <span id="optgen">Gênero</span></option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outros">Outros</option>
+               </select>
+                <input type="email" class="input" name="email" placeholder="E-mail">
+                <input type="password" class="input" name="senha" placeholder="Senha">
+                <div >
+                  <span class="close" onclick="closeModal()">Cancelar</span>
+                  <button id="saveBtn" class="bnt">Editar</button>
+                </div>
+              </div>            
+            </div>
+        </form>
+
+    <script>
+        function openModal() {
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        const deleteBtns = document.querySelectorAll(".lixo");
+
+        function deletePost(postId) {
+        fetch(`/posts/${postId}`, {method: "DELETE"})
+          .then(result => {window.location.href = '/';})
+          .catch((error) => {console.error("Erro ao fazer a requisição DELETE:", error); });
+        }
+
+      deleteBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+      const postId = e.target.id.split("-")[1];
+      deletePost(postId);
+      });
+      });
+
+      function toggleButtons(tweetId) {
+      const deleteBtn = document.getElementById(`deleteBtn-${tweetId}`);
+      const editBtn = document.getElementById(`botaoeditar-${tweetId}`);
+
+      deleteBtn.classList.toggle("hidden");
+      editBtn.classList.toggle("hidden");
+    }
+
+const tresPontosBtns = document.querySelectorAll(".tresPontos");
+
+tresPontosBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const tweetId = e.target.id.split("-")[1];
+    toggleButtons(tweetId);
+  });
+});
+
+const botaoEditar = document.querySelectorAll(".botaoeditar");
+
+
+
+botaoEditar.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const tweetId = e.target.id.split("-")[1];
+    
+    const areadetexto = document.getElementById(`editpost-${tweetId}`);
+    const button = document.getElementById(`BtnEditar-${tweetId}`);
+    const content = document.getElementById(`content-${tweetId}`)
+
+
+    if(areadetexto.style.display === "none"){
+      button.style.display = "block"
+      areadetexto.style.display = "block";
+      content.style.display = "none";
+    }else{
+      button.style.display = "none"
+      areadetexto.style.display = "none";
+      content.style.display = "block";
+    }
+
+  });
+});
+
+    </script>
+</body>
+</html>

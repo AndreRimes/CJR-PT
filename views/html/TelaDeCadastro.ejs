@@ -22,8 +22,9 @@
             </form>
         </div>
     </div>
-    <form action="/cadastro" method="POST"  id="formu" enctype="multipart/form-data" >
-    <div class="teste">
+    
+    <form method="POST" id="formu">
+      <div class="teste">
         <img src="../img/bg.png" class="img_bg">
 
         <div class="div_prin">
@@ -50,7 +51,13 @@
                         <option value="outros">Outros</option>
                     </select>
                     <input class="input" type="email" id="email" placeholder="Email" name="email">
-                    <input class="input" type="text" placeholder="Cargo" name="cargo" id="cargo">
+                   <select name="cargo" id="cargo">
+                    <option value="">Cargo</option>
+                    <option value="admin">Admin</option>
+                    <option value="membro">Membro</option>
+                    <option value="outros">Outros</option>
+                   </select>
+                        
                     <div class="BoxSenha">
                         <input id="senha" type="password" class="input" placeholder="Senha" name="senha">
                         <span class="SimboloMostrarSenha"><img src="../img/SimboloMostrarSenha.png" class="MostrarSenha"></span>
@@ -75,60 +82,55 @@ const inputemail = document.querySelector("#email");
 const inputcargo = document.querySelector("#cargo");
 const inputgenero = document.querySelector("#selGen");
 
-
-MostrarSenha.addEventListener("click", ()=>{
-    if(inputSenha.type === "password"){
-        inputSenha.type = "text";
-    }else{
+MostrarSenha.addEventListener("click", () => {
+        if (inputSenha.type === "password") {
+            inputSenha.type = "text";
+        } else {
         inputSenha.type = "password";
-    }
-})
+        }
+        });
 
 form.addEventListener('submit', function(event) {
 
-  var reader = new FileReader();
-  reader.readAsDataURL(inpimag.files[0]);
-  reader.onload = function () {
-    var imageData = reader.result;
+    var reader = new FileReader();
+    reader.readAsDataURL(inpimag.files[0]);
 
-    
-    var senha = inputSenha.value;
-    var username= inputUsername.value;
-    var email = inputemail.value;
-    var cargo = inputcargo.value;
-    var genero = inputgenero.value
+    reader.onload = function () {
+        var imageData = reader.result;
+        var senha = inputSenha.value;
+        var username = inputUsername.value;
+        var email = inputemail.value;
+        var cargo = inputcargo.value;
+        var genero = inputgenero.value;
 
+        var data = {
+            imagem: imageData,
+            senha: senha,
+            username: username,
+            email: email,
+            cargo: cargo,
+            genero: genero
+        };
 
-    // Criar objeto para enviar para o backend
-    var data = {
-      imagem: imageData,
-      senha: senha,
-      username:username,
-      email:email,
-      cargo:cargo,
-      genero:genero
+        fetch('/cadastro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            window.location.href = '/login';
+        })
+        .catch(error => {
+            console.log('Error: ', error);
+        });
     };
 
-    // Enviar solicitação para o backend
-    fetch('/cadastro', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-      window.location.href = '/login';
-    })
-    .catch(error => {
-      console.log('Error: ', error);
-    });
-  };
-
-  reader.onerror = function (error) {
-    console.log('Error: ', error);
-  };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
 });
 
 

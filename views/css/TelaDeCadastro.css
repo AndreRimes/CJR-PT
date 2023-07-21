@@ -208,15 +208,16 @@ select {
   }
 
   .error-message{
+    position: absolute;
     text-align: center;
     border-radius: 16px;
-    margin-top: 10px;
-    width: 60%;
+    width: 20%;
     background-color: #ff6c70;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 30px;
     padding-right: 30px;
+    margin-bottom: 690px;
   }
 
   #possui-conta{

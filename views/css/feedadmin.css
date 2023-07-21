@@ -39,6 +39,7 @@ body {
     border-radius: 16px;
 }
 .navbar-direito {
+    margin-right: 0px;
     display: flex;
     align-items: center;
 }
@@ -51,7 +52,7 @@ body {
     border-radius: 16px;
     cursor: pointer;
     width: 92px;
-    height: 48px;
+    height: 48px; 
     margin-right: 48px;
     font-style: normal;
     font-weight: 700;
@@ -87,12 +88,11 @@ body {
 
 }
 
-
 .tweet {
     border-radius: 15px;
     margin-bottom: 15px;
     background-color: var(--cor-partes);
-
+    position: relative;
   }
 
 .tweet .username {
@@ -195,13 +195,21 @@ text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  
+ 
 }
-
 #Coment{
   width: 100%;
 }
 .lixo{
-    margin-left: 85px;
+    position: absolute;
+    margin-top: 20px;
+    right: 40px;
     cursor: pointer;
 }
+
+.ImgPequena {
+  height: 30px;
+  width: 30px;
+  margin-bottom: 10px;
+}
+
