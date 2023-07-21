@@ -12,6 +12,7 @@ body {
     font-family: 'Inter';
 }
 
+
 .navbar {
     width: 100%;
     height: 86px;
@@ -76,7 +77,6 @@ body {
     text-decoration: none;
 
 }
-
 /*Criação do Body*/
 
 .BoxLogin {
@@ -161,13 +161,6 @@ form{
 
 }
 
-.SimboloMostrarSenha{
-    z-index: 2;
-    margin-top: -32px;
-    padding-left: 175%;
-
-}
-
 .EsqueceuSenha {
     width: auto;
     height: auto;
@@ -177,12 +170,13 @@ form{
     transform: translate(-50%, -50%);
     text-decoration:underline;
     color: var(--cor-segundaria);
+    margin-top: 30px;
+    margin-bottom: 30px;
 
 }
 
 .BotãoEntrar{
     position: absolute;
-    margin-top: 10%;
     margin-left: 20%;
     border-radius: 15px;
     bottom: 50px;
@@ -197,8 +191,52 @@ form{
 }
 
 
+.error-message{
+    z-index: 2;
+    text-align: center;
+    border-radius: 16px;
+    background-color: #ff6c70;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 10x;
+    margin:auto;
+    margin-top: 10px;
+    margin-left: 100px;
+  }
 
+  .success-message{
+    z-index: 2;
+    text-align: center;
+    border-radius: 16px;
+    margin-top: 10px;
+    background-color: #90EE90;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 10x;
+    margin:auto;
+    max-width: 328.188px;
+    margin-top: 10px;
+    margin-left: 100px;
+  }
 
+  .message{
+    margin-left: 100%;
+    z-index: 2;
+    margin: 190px;
+    width: 547px;
+  }
 
-
-
+  .princ-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .SimboloMostrarSenha{
+    position: absolute;
+    left: 82%;
+    margin-top: 20.1%;
+    display: flex;
+  }

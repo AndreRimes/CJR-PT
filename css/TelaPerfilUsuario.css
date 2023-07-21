@@ -1,27 +1,46 @@
+:root{
+  --cor-geral: #111E3E;
+  --cor-partes: #222E50;
+  --cor-navbar: #8BC34A;
+  --cor-primaria: #D9D9D9;
+  --cor-segundaria: #71767B;
+
+}
 body {
     background-color: #111E3E;
     margin: 0;
     padding: 0;
     font-family: 'Inter';
+    overflow-y: auto;
   }
   
   .profile {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    
     padding-right: 50%;
     padding-top: 10%;
-    
-     /* Aproxima o perfil do feed */
+    position: relative;
+    border: 1px solid #7E7E7E;
+    padding-right: 440px;
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    background-color: var(--cor-partes);
+    border-radius: 16px;
   }
+
+
   
   .photo {
-    
     border-radius: 50%;
-    width: 60%;
-    height: 60%;
+    width: 48px;
+    height: 48px;
     cursor: pointer;
+  }
+  #photoPerfil{
+    width: 150px;
+    height: 150px;
   }
   
   .name {
@@ -125,47 +144,40 @@ body {
   }
   
   .feed {
-    position: relative;
-    width: 551px;
+    position: absolute;
+     width: 650px;
     height: 100%;
-    left: 36%;
+    left: 30%;
     top: 80px;
     background-color: #111E3E;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* Alinha o feed ao topo */
-    border: 1px solid #7E7E7E;
     padding-top: 20px; /* Adiciona espaçamento no topo do feed */
     z-index: 1; /* Garante que o feed fique acima do post-bg */
   }
   
-  .post-bg {
-    position: absolute;
-    width: 551px;
-    height: 151px;
-    background-color: #222E50;
-    bottom: 88%;
- /* Ajusta a posição horizontal */
-    z-index: -1; /* Coloca o post-bg atrás do feed */
-  }
+  
   
   .tweet {
-    border-radius: 15px;
-    margin-bottom: 15px;
-    background-color: #222E50;
-    position: relative;
-    padding: 0%;
-    
-  }
-  
-  .primeiro-tweet {
+    width: 90%;
     border-radius: 15px;
     margin-bottom: 15px;
     background-color: #222E50;
     position: relative;
     padding: 10px;
-    z-index: -2;
+    z-index: 1;
+  }
+  
+  .primeiro-tweet {
+    width: 90%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    background-color: #222E50;
+    position: relative;
+    padding: 10px;
+    z-index: 1;
   }
   .primeiro-tweet:before {
     content: "Publicações";
@@ -201,7 +213,7 @@ body {
   .tweet .conteudo {
     font-size: 15px;
     margin-right: 10px;
-    margin-left: 80px;
+    margin-left: 0px; 
     margin-bottom: 20px;
     margin-top: 15px;
     color: white;
@@ -233,16 +245,190 @@ body {
   
   .primeiro-tweet .conteudo {
     font-size: 15px;
-    margin-right: 10px;
-    margin-left: 80px;
     margin-bottom: 5%;
     margin-top: 4%;
     color: white;
   }
+  .tweet .conteudo,
+.primeiro-tweet .conteudo {
+  word-break: break-word;
+}
   
-  .line {
-    width: calc(100%); /* Ajusta a largura da linha */
-    height: 1px;
-    background-color: #888;
-    margin-bottom: 10%; /* Adiciona espaçamento à esquerda */
+  
+  a{
+    color:white;
+    text-decoration: none;
   }
+
+  #Editar{
+    cursor: pointer;
+    display: inline;
+    width: 154px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: 1px solid #000;
+    background: #111E3E;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    top: 130px;
+    left: 390px;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    color: white;
+    background-color: var(--cor-geral);
+    margin: 20% auto;
+  padding: 20px;
+  border-radius: 20px;
+  width: 700px;
+  height: 705px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  }
+
+  .close {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: 48px;
+    margin-bottom: 10px;
+  }
+  .bnt{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background-color: var(--cor-navbar);
+    border-radius: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 37px;
+    padding-left: 37px;
+    cursor: pointer;
+  }
+
+  .botoes{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    
+  }
+  .input{
+    overflow: hidden;
+    width: 401px;
+    height: 59px;
+    font-size: 16px;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    border-radius: 15px;
+    background: #D9D9D9;
+    margin-bottom: 15px;
+    padding-left: 12px;
+    min-width: 59px;
+  }
+  
+  .input::placeholder{
+    color: #111E3E;
+  }
+
+  select {
+    overflow: hidden;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    border-radius: 15px;
+    background: #D9D9D9;
+    margin-bottom: 15px;
+    padding-left: 12px;
+    min-width: 59px;
+    background-image: url(../img/botao-genero.png);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 20px) center;
+    appearance: none;
+    width: 415px;
+    height: 61px;
+    min-height: none;
+}
+.img_bg{
+  width: 40% ;
+}
+
+.tresPontos{
+  position: absolute;
+  margin-top: 20px;
+  right: 40px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+
+.lixo,
+.botaoeditar {
+  display: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+}
+
+.hidden{
+  display: flex;
+}
+.show{
+  display: none;
+}
+
+
+
+.botoes {
+  margin-left: 520px;
+  display: flex;
+  gap: 10px; 
+}
+.editpost{
+  border: none;
+  display: none;
+  padding-left: 10px;
+  color: var(--cor-geral);
+  width: 90%;
+  background-color: var(--cor-primaria);
+  margin-left: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.BtnEditar{
+  display: none;
+  border: none;
+  margin-left: 470px;
+  width: 70px;
+  height: 30px;
+  border-radius: 16px;
+  color: white;
+  background-color: var(--cor-navbar);
+}
