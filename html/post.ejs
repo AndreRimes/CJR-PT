@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Aberto</title>
+    <link rel="stylesheet" href="../css/FeedPostLogado.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+    <label for="lg">
+        <div class="logo"><span><img id="img-logo" src="../img/cjr.png"></span></div>
+    </label>
+    <form action="/">
+        <button id="lg" style="display: none;">AAAA</button>
+    </form>       
+     <div class="navbar-direito">
+        <% if(!usuariologado.imagem) {%>
+            <label for="FotoPerfil">
+                <img class="ImagemPerfil ImgPequena" style="height: 60px; width: 60px; margin-bottom: 2px; cursor: pointer;" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+            </label>
+            <% }else{ %>
+                <label for="FotoPerfil">
+                    <img style="height: 60px; width: 60px; margin-bottom: 10px; cursor: pointer;" src="<%=usuariologado.imagem%>" alt="Imagem do Usuário" class="ImagemPerfil ImgPequena">
+                </label>
+                <% } %>
+         <form action="/meuperfil">
+            <button type="submit" id="FotoPerfil" style="display: none;"></button>
+         </form>       
+        <a href="/meuperfil" class="link"><%=usuario.username%></a>
+        <form action="/logout" method="post">
+            <button class="button">Logout</button>
+        </form>
+    </div>
+</div>
+    <div class="feed">
+        <div class="container">
+            <div class="arrow">
+                <label for="Voltar">
+                  <img  id="voltar" src="../img/arrow-left.png" alt="Seta de Voltar">
+                </label>
+                <form action="/">
+                  <button style="display: none;" type="submint" id="Voltar"></button>
+                </form>
+            </div>
+            <div class="tweet">
+              <%if(usuario.imagem){ %>
+                <img class="ImagemPerfil" src="<%=usuario.imagem%>" alt="ImagemPerfil">
+              <%  }else{ %>
+                <img class="ImagemPerfil" src="../img/ImagemPerfil.png" alt="ImagemPerfil">
+              <% }%>
+                <div class="username"><a href="/perfil/<%=usuario.id%>"><%=usuario.username%></a></div>
+                <%const dataString = post.updated_at;%>
+                <%const data = new Date(dataString);%>
+                <%const dia = data.getDate();%>
+                <%const mes = data.toLocaleString('default', { month: 'long' });%>
+                <% const dataFormatada = `${dia} de ${mes} `;%>
+                <div class="timestamp">-<%=dataFormatada%></div>
+                <div class="content"><%= post.content %></div>
+                <img src="../img/Balão.png"  class="balao" id="Balao">
+            </div>
+            <% if (post.coments && post.coments.length > 0) { %>
+                <% post.coments.forEach((coment) => { %>
+                  <div class="tweet">
+                    <%if(coment.User.imagem){ %>
+                      <img class="ImagemPerfil" src="<%=coment.User.imagem%>" alt="ImagemPerfil">
+                    <%  }else{ %>
+                      <img class="ImagemPerfil" src="../img/ImagemPerfil.png" alt="ImagemPerfil">
+                    <% }%>
+                   <% if(usuario.admin){ %> 
+                      <img src="../img/lixo.png" class="lixo" id="deleteBtn-<%=coment.id%>">
+                    <% } %>
+                    <div class="username"> <a href="/perfil/<%= coment.User.id %>"><%= coment.User.username %> </a></div>
+                    <%const dataString = coment.updated_at;%>
+                    <%const data = new Date(dataString);%>
+                    <%const dia = data.getDate();%>
+                    <%const mes = data.toLocaleString('default', { month: 'long' });%>
+                    <% const dataFormatada = `${dia} de ${mes} `;%>
+                    <div class="timestamp">-<%=dataFormatada%></div>
+                    <div class="content"><%= coment.content%></div>
+                  </div>
+                <% }); %>
+            <% }else{ %>
+              <div class="tweet">
+                <div class="content">
+                  ESSE POST NAO TEM NENHUM COMENTARIO
+                </div>
+              </div>
+              <% } %>
+              <button class="comentar-button" id="openModalBtn">Comentar</button>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+      <form action="/CriarComent/<%=post.id%>" method="post">
+          <div class="modal-content">
+              <div id="simplemde-container">
+                  <textarea rows="10" id="textarea" name="content" placeholder="POST"></textarea>
+              </div>
+          <div class="botoes">
+              <span class="close">Cancelar</span>
+              <button type="submit" id="saveBtn" class="bnt">Publicar</button>
+          </div>
+      </form>
+  </div>
+
+
+</body>
+<script>
+            const openModalBtn = document.getElementById("openModalBtn");
+            const modal = document.getElementById("modal");
+            const closeBtn = document.getElementsByClassName("close")[0];
+            const saveBtn = document.getElementById("saveBtn");
+            const textarea = document.getElementById("textarea");
+            const modal_coment = document.querySelector("#modal-coment")
+            const Balao = document.querySelector("#Balao")
+
+            openModalBtn.addEventListener("click", () => {
+                modal.style.display = "block";
+            });
+            Balao.addEventListener("click",()=>{
+              modal.style.display = "block";
+
+            })
+            closeBtn.addEventListener(  "click", () => {
+                    modal.style.display = "none";
+            });
+
+
+            function deleteComent(comentId) {
+              fetch(`/coments/${comentId}`, {
+                method: "DELETE"
+              }).then(result => { window.location.reload();})
+                 .catch((error) => {console.error("Erro ao fazer a requisição DELETE:", error);});
+            }
+
+            const deleteBtns = document.querySelectorAll(".lixo");
+
+             deleteBtns.forEach((btn) => {
+               btn.addEventListener("click", (e) => {
+               const comentId = e.target.id.split("-")[1];
+               deleteComent(comentId);
+              });
+            });  
+
+</script>
+
+
+</html>
+
+
+
+
+

@@ -11,32 +11,55 @@
 <body>
     <!-- Criação da NavBar-->
     <div class="barra">
-        <div class="logo-menor"><img id="logo-menor" src="../img/cjr.png"></div>
+        <label for="lg">
+            <div class="logo-menor"><span><img id="logo-menor" src="../img/cjr.png"></span></div>
+        </label>
+        <form action="/">
+            <button id="lg" style="display: none;">AAAA</button>
+        </form>
+
+
         <div class="barra-botoes">
-            <a href="TeladeCadastro.html" class="criar-conta">Criar Conta</a>
-            <form action="TelaDeLogin.html">
+            <a href="/cadastro" class="criar-conta">Criar Conta</a>
+            <form action="/login">
                 <button class="botao">Entrar</button>
             </form>
         </div>
     </div>
 
     <img style="top: 300px; left: 225px;" src="../img/bg.png" class="img_fundo">
-    
+    <form action="/recuperacao" , method="post" id="form">
     <div class="menu">
         <h1 class="titulo-senha">Bem-vindo de volta, fulano! Escolha sua nova senha</h1>
         <div class="info">
             <h1 id="email">Digite seu e-mail</h1>
-            <input class="input" type="email" placeholder="">
+            <input class="input" type="email" placeholder="" name="email">
             <h1 id="senha">Senha nova</h1>
-            <input class="input" type="password" placeholder="">
+            <input class="input" type="password" placeholder="" name="senha" id="senha1">
             <h1 id="senha">Digite novamente sua senha</h1>
-            <input class="input" type="password" placeholder="">
+            <input class="input" type="password" placeholder="" id="senha2">
             
         </div>
-        
-        
-        <a href="TelaDeLogin.html" class="possui-conta">Possui conta? <span id="acesse-conta">Acesse aqui</span></a>
+        <a href="/login" class="possui-conta">Possui conta? <span id="acesse-conta">Acesse aqui</span></a>
         <button class="botao-cadastrar">Cadastrar</button>
     </div>
+    </form>
+
+
+    <script>
+          const form = document.querySelector("#form");
+          const senha1 = document.querySelector("#senha1");
+          const senha2 = document.querySelector("#senha2");
+          const email = document.querySelector("#email")
+
+
+          form.addEventListener("submit",(e)=>{
+            if(senha1.value != senha2.value){
+                e.preventDefault();
+                alert("senhas precisam ser iguais");
+            }
+          })
+
+    </script>
 </body>
 </html>

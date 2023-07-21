@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SemPermissao</title>
+    <link rel="stylesheet" href="../css/SemPermissao.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Criação da NavBar-->
+    <div class="navbar">
+        <label for="logo">
+             <div class="logo"><span><img id="img-logo" src="../img/cjr.png"></span></div>
+        </label>
+        <form action="/">
+            <button type="submit" id="logo" style="display: none;"></button>
+        </form>
+        <div class="navbar-direito">
+            <a href="/cadastro" class="link">Criar Conta</a>
+            <form action="/login">
+                <button type="submit" class="button">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+
+    <main>
+        <div class="ImagemCjr">
+            <img src="../img/bg.png" class="img_bg">
+        </div>
+        <div class="BoxCentral">
+            <div class="Mensagem">
+                <p>Você não tem permissão para acessar essa página!!!</p>
+            </div>
+            <form action="/login">
+                <button type="submit" class="button2">Entrar na sua conta</button>
+            </form>
+        </div>
+            
+    </main>
+
+
+</body>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="../css/TelaPerfilUsuario.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+      <div class="navbar">
+        <label for="princ">
+        <div class="logo"><span><img id="img-logo" src="../img/cjr.png"></span></div>
+      </label>
+      <form action="/">
+        <button id="princ" style="display: none;" type="submit">AAAA</button>
+      </form>
+        <div class="navbar-direito">
+
+          <% if(!usuariologado.imagem) {%>
+            <label for="FotoPerfil">
+                <img class="ImagemPerfil ImgPequena" style="height: 60px; width: 60px; margin-bottom: px; cursor: pointer;" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+            </label>
+            <% }else{ %>
+                <label for="FotoPerfil">
+                    <img style="height: 60px; width: 60px; margin-bottom: 10px; cursor: pointer;" src="<%=usuariologado.imagem%>" alt="Imagem do Usuário" class="ImagemPerfil ImgPequena">
+                </label>
+                <% } %>
+         <form action="/meuperfil">
+            <button type="submit" id="FotoPerfil" style="display: none;"></button>
+         </form>  
+
+          <a href="/meuperfil" class="link">PERFIL</a>
+          <form action="/logout" method="post">
+                <button type="submit" class="button">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="feed">
+      <div class="post-bg"></div>    
+      <div class="profile">
+        <% if(!usuario.imagem) {%>
+          <img class="photo" id="photoPerfil" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+          <% }else{ %>
+              <img class="photo" id="photoPerfil" src="<%=usuario.imagem%>">
+          <% } %>
+          <div class="name"><%= usuario.username %></div>
+      
+          <div class="organiza">
+          <img src="../img/predio.png" id="cor-icone1" alt="Ícone de Prédio">
+          <div class="job"><%= usuario.cargo %></div>
+          <img src="../img/email.png" id="cor-icone2" alt="Ícone de Carta">
+          <div class="contact"><%= usuario.email %></div>
+      </div>
+      </div>
+      <div class="line"></div>
+  
+      <div class="primeiro-tweet">
+      <% if(usuario.posts.length != 0){ %>
+        <% if(!usuario.imagem) {%>
+          <img class="photo" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+          <% }else{ %>
+              <img class="photo" src="<%=usuario.imagem%>">
+          <% } %>
+        <div class="nome"><%= usuario.username %></div>
+        <%const dataString =  usuario.posts[usuario.posts.length -1].updated_at;%>
+          <%const data = new Date(dataString);%>
+          <%const dia = data.getDate();%>
+          <%const mes = data.toLocaleString('default', { month: 'long' });%>
+          <% const dataFormatada = `${dia} de ${mes} `;%>
+          <div class="horario"><%=dataFormatada%></div>
+        <div class="conteudo"><a href="/post/<%= usuario.posts[usuario.posts.length -1].id %>"><%= usuario.posts[usuario.posts.length -1].content %></a></div>
+    </div>
+    <% for (let i = usuario.posts.length - 2; i >= 0; i--) { %>
+      <div class="tweet">
+        <% if(!usuario.imagem) {%>
+          <img class="photo" src="../img\ImagemPerfil.png" alt="ImagemPerfil">
+          <% }else{ %>
+              <img class="photo" src="<%=usuario.imagem%>">
+          <% } %>
+          <div class="nome"><%= usuario.username %></div>
+          <%const dataString =  usuario.posts[usuario.posts.length -1].updated_at;%>
+          <%const data = new Date(dataString);%>
+          <%const dia = data.getDate();%>
+          <%const mes = data.toLocaleString('default', { month: 'long' });%>
+          <% const dataFormatada = `${dia} de ${mes} `;%>
+          <div class="horario"><%=dataFormatada%></div>
+        <div class="conteudo"><a href="/post/<%= usuario.posts[i].id %>"><%= usuario.posts[i].content %></a></div>
+
+      </div> 
+    <% }}else{%>
+      <div class="tweet" style="color:white;">
+          Este usuario nao possui nenhum tweet
+      </div>
+      <% } %>
+
+<script>
+   
+
+</script>
+
+
+</body>
+</html>

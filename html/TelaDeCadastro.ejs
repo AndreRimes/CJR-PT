@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tela de cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/TelaDeCadastro.css">
+</head>
+<body>
+    <div class="navbar">
+        <label for="lg">
+            <div class="logo"><span><img id="img-logo" src="../img/cjr.png"></span></div>
+        </label>
+        <form action="/">
+            <button id="lg" style="display: none;">AAAA</button>
+        </form>
+        <div class="navbar-direito">
+            <a href="/cadastro" class="link">Criar Conta</a>
+            <form action="/login">
+                <button type="submit" class="button">Entrar</button>
+            </form>
+        </div>
+    </div>
+    
+    <form method="POST" id="formu">
+      <div class="teste">
+        <img src="../img/bg.png" class="img_bg">
+
+        <div class="div_prin">
+            <% if (success && success.length > 0) { %>
+                <div class="success-message">
+                  <%= success[0] %>
+                </div>
+              <% } %>
+              
+              <% if (erro && erro.length > 0) { %>
+                <div class="error-message">
+                  <%= erro[0] %>
+                </div>
+              <% } %>
+            <label for="input_imgem">
+                <img src="../img/login.png" alt="" class="img_login">
+            </label>
+            <input type="file" id="input_imgem" name="imagem">
+                    <input id="text" type="text" class="input" placeholder="Nome" name="username">
+                    <select class="select" id="selGen" name="genero">
+                        <option value=""> <span id="optgen">Gênero</span></option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                    <input class="input" type="email" id="email" placeholder="Email" name="email">
+                   <select name="cargo" id="cargo">
+                    <option value="">Cargo</option>
+                    <option value="admin">Admin</option>
+                    <option value="membro">Membro</option>
+                    <option value="outros">Outros</option>
+                   </select>
+                        
+                    <div class="BoxSenha">
+                        <input id="senha" type="password" class="input" placeholder="Senha" name="senha">
+                        <span class="SimboloMostrarSenha"><img src="../img/SimboloMostrarSenha.png" class="MostrarSenha"></span>
+                    </div>
+                <a href="/login" class="link-conta" id="possui-conta">Possui conta? <span id="acesse-conta">Acesse aqui</span></a>
+                <button type="submit" class="button-login">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+
+
+<script>
+const inputSenha = document.querySelector("#senha");
+const MostrarSenha = document.querySelector(".MostrarSenha");
+const form = document.querySelector("#formu");
+const inpimag = document.querySelector("#input_imgem")
+const inputUsername = document.querySelector("#text");
+const inputemail = document.querySelector("#email");
+const inputcargo = document.querySelector("#cargo");
+const inputgenero = document.querySelector("#selGen");
+
+MostrarSenha.addEventListener("click", () => {
+        if (inputSenha.type === "password") {
+            inputSenha.type = "text";
+        } else {
+        inputSenha.type = "password";
+        }
+        });
+
+form.addEventListener('submit', function(event) {
+
+    var reader = new FileReader();
+    reader.readAsDataURL(inpimag.files[0]);
+
+    reader.onload = function () {
+        var imageData = reader.result;
+        var senha = inputSenha.value;
+        var username = inputUsername.value;
+        var email = inputemail.value;
+        var cargo = inputcargo.value;
+        var genero = inputgenero.value;
+
+        var data = {
+            imagem: imageData,
+            senha: senha,
+            username: username,
+            email: email,
+            cargo: cargo,
+            genero: genero
+        };
+
+        fetch('/cadastro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            window.location.href = '/login';
+        })
+        .catch(error => {
+            console.log('Error: ', error);
+        });
+    };
+
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+});
+
+
+
+
+
+
+</script>
+</html>
